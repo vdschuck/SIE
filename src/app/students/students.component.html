@@ -1,0 +1,28 @@
+<div class="row">
+    <table class="table">
+        <thead class="thead-inverse">
+            <tr>
+                <th class="text-center">ID</th>
+                <th class="text-center">Nome</th>
+                <th class="text-center">Mãe</th>
+                <th class="text-center">Pai</th>
+                <th class="text-center">Telefone da mãe</th>
+                <th class="text-center">Telefone do Pai</th>
+                <th class="text-center">Endereço</th>
+                <th class="text-center">Turma</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let student of _students | async">
+                <td class="text-center">{{student.id}}</td>
+                <td class="text-center">{{student.name}}</td>
+                <td class="text-center">{{student.mother}}</td>
+                <td class="text-center">{{student.father}}</td>
+                <td class="text-center">{{student.phone_father}}</td>
+                <td class="text-center">{{student.phone_mother}}</td>
+                <td class="text-center">{{student.address}}</td>
+                
+            </tr>
+        </tbody>
+    </table>
+</div>

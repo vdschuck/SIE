@@ -17,8 +17,8 @@ import { DropdownDirective } from "./utils/dropdown.directive";
     ],
     exports: [
         AppRoutingModule,
-        HeaderComponent,
         CommonModule,
+        HeaderComponent,        
         DropdownDirective
     ]   
 })

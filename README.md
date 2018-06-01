@@ -29,4 +29,4 @@ To get more help on the Angular CLI use `ng help` or go check out the [Angular C
 
 ## How to Add Bootstrap to an Angular CLI project
 
-Access this link for more information (https://loiane.com/2017/08/how-to-add-bootstrap-to-an-angular-cli-project/)
+Access this link for more information [Bootstrap](https://loiane.com/2017/08/how-to-add-bootstrap-to-an-angular-cli-project/).
