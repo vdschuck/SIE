@@ -19,12 +19,12 @@ export class StudentsServices{
                     .pipe(map((response => response.json())));                         
     }
 
-    getStudentById(id: any){
-        let params = new HttpParams();
-        params = params.append('id', id);
+    getStudentById(id: string){
+        //let params = new HttpParams();
+        //params = params.append('id', id);
         
         return this.http
-                    .get(this._url, {params: params})
+                    .get(this._url +  id)
                     .pipe(map((response => response.json())));                         
     }
 }

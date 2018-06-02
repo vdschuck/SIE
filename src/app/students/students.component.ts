@@ -31,6 +31,6 @@ export class StudentsComponent implements OnInit {
   }
 
   onEditItem(id: any){
-    this.router.navigate(['alunos/edit', {_id: id}]);
+    this.router.navigate(['alunos/edit', id]);
   }
 }

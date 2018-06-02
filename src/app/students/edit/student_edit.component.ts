@@ -13,21 +13,25 @@ import { Student } from '../../models/student.model';
 })
 
 export class StudentEditComponent implements OnInit {
-  id: number;
+  id: string;
   student: Student;
   editMode = false;
   studentForm: FormGroup;
 
   constructor(private route: ActivatedRoute, private services: StudentsServices, private router: Router) {}      
 
-  ngOnInit() {    
-    this.route.params.subscribe(
+  ngOnInit() { 
+    this.id = this.route.snapshot.paramMap.get('id');
+    this.editMode = true;
+    this.initForm();
+    
+    /*this.route.params.subscribe(
       (params: Params) => { 
-        this.id = + params['_id'];
-        this.editMode = params['_id'] != null;
+        this.id = params['id'];
+        this.editMode = params['id'] != null;
         this.initForm();
       }
-    );
+    );*/
   }
   
   private initForm(){    
@@ -36,7 +40,7 @@ export class StudentEditComponent implements OnInit {
     if(this.editMode){        
         this.getStudentById(this.id); 
                 
-        nome = this.student.nome;
+        /*nome = this.student.nome;
         nomeMae = this.student.nomeMae;
         nomePai = this.student.nomePai;
         endereco = this.student.endereco;
@@ -48,10 +52,10 @@ export class StudentEditComponent implements OnInit {
               turma.descricao = turma.descricao;
               turma.id = turma.id;   
         }
-      }
+      }*/
     }   
 
-    this.studentForm = new FormGroup({
+    /*this.studentForm = new FormGroup({
       'nome': new FormControl(nome, Validators.required),
       'nomeMae': new FormControl(nomeMae, Validators.required),
       'nomePai': new FormControl(nomePai, Validators.required),
@@ -59,14 +63,14 @@ export class StudentEditComponent implements OnInit {
       'telefoneMae': new FormControl(telefoneMae, Validators.required),
       'telefonePai': new FormControl(telefonePai, Validators.required),
       'turma': turma
-    })   
+    })  */ 
   }
 
-  getStudentById(id: any): void {
+  getStudentById(id: string): void {
     this.services.getStudentById(id)
         .subscribe(data => this.student = data.aluno,
                     error => console.log("Student Service Error: " + error),
-                    () => console.log('Done.'+ this.student)
+                    () => console.log('Done.'+ this.student + '-' + this.id)
                 )
   }
 
