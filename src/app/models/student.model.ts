@@ -1,7 +1,7 @@
 import { Classroom } from "./classroom.model";
 
 export class Student {
-    public id : string;
+    public _id : string;
     public nome: string;
     public turma: Classroom[];
     public nomeMae: string;  
@@ -10,8 +10,8 @@ export class Student {
     public telefonePai: string;
     public endereco: string;
 
-    constructor(id : string, nome: string, turma: Classroom[], nomeMae: string, telefoneMae: string, nomePai: string,  telefonePai: string, endereco: string, ){
-        this.id = id,
+    constructor(_id : string, nome: string, turma: Classroom[], nomeMae: string, telefoneMae: string, nomePai: string,  telefonePai: string, endereco: string, ){
+        this._id = _id,
         this.nome = nome;
         this.nomeMae = nomeMae;
         this.nomePai = nomePai;

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 import { StudentsServices } from '../services/students.services';
 import { Student } from '../models/student.model';
@@ -12,7 +13,7 @@ import { Student } from '../models/student.model';
 export class StudentsComponent implements OnInit {  
   _students: Student[];  
 
-  constructor(private services: StudentsServices) { }
+  constructor(private services: StudentsServices, private router: Router) { }
 
   getStudents(): void {
         this.services.getStudents()
@@ -22,10 +23,14 @@ export class StudentsComponent implements OnInit {
                         () => console.log('Done.')
                      )
   }  
-
+  
   ngOnInit() {    
         this.getStudents();
 
         console.log(this._students);
+  }
+
+  onEditItem(id: any){
+    this.router.navigate(['alunos/edit', {_id: id}]);
   }
 }

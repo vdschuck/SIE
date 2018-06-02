@@ -10,11 +10,12 @@
                 <th class="text-center">Telefone do Pai</th>
                 <th class="text-center">Endereço</th>
                 <th class="text-center">Turma</th>
+                <th class="text-center"></th>
             </tr>
         </thead>
         <tbody>
             <tr *ngFor="let student of _students">
-                <td class="text-center">{{student.id}}</td>
+                <td class="text-center">{{student._id}}</td>
                 <td class="text-center">{{student.nome}}</td>
                 <td class="text-center">{{student.nomeMae}}</td>
                 <td class="text-center">{{student.nomePai}}</td>
@@ -22,6 +23,7 @@
                 <td class="text-center">{{student.telefoneMae}}</td>
                 <td class="text-center">{{student.endereco}}</td>   
                 <td class="text-center">{{student.turma.descricao}}</td>
+                <a class="btn btn-secondary btn-sm" role="button" (click)="onEditItem(student._id)">Editar</a>
             </tr>
         </tbody>
     </table>
