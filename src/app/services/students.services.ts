@@ -17,8 +17,6 @@ export class StudentsServices
     getStudents(){
         return this.http
                     .get(this._url)
-                    .pipe(map((response : Response) => {
-                        return <Student[]>response.json();
-                    }));                         
+                    .pipe(map((response => response.json())));                         
     }
 }

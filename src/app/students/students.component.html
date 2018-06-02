@@ -13,15 +13,15 @@
             </tr>
         </thead>
         <tbody>
-            <tr *ngFor="let student of _students | async">
+            <tr *ngFor="let student of _students">
                 <td class="text-center">{{student.id}}</td>
-                <td class="text-center">{{student.name}}</td>
-                <td class="text-center">{{student.mother}}</td>
-                <td class="text-center">{{student.father}}</td>
-                <td class="text-center">{{student.phone_father}}</td>
-                <td class="text-center">{{student.phone_mother}}</td>
-                <td class="text-center">{{student.address}}</td>
-                
+                <td class="text-center">{{student.nome}}</td>
+                <td class="text-center">{{student.nomeMae}}</td>
+                <td class="text-center">{{student.nomePai}}</td>
+                <td class="text-center">{{student.telefonePai}}</td>
+                <td class="text-center">{{student.telefoneMae}}</td>
+                <td class="text-center">{{student.endereco}}</td>   
+                <td class="text-center">{{student.turma.descricao}}</td>
             </tr>
         </tbody>
     </table>

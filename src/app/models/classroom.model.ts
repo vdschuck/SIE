@@ -1,9 +1,9 @@
 export class Classroom {
     public id : string;
-    public description : string; 
+    public descricao : string; 
 
-    constructor(id: string, description: string){
+    constructor(id: string, descricao: string){
         this.id = id;
-        this.description = description;        
+        this.descricao = descricao;        
     }
 }

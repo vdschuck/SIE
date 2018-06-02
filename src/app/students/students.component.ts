@@ -17,8 +17,9 @@ export class StudentsComponent implements OnInit {
   getStudents(): void {
         this.services.getStudents()
                      .subscribe(
-                        data => this._students = data,
-                        error => console.log("Student Service Error: " + error)
+                        data => this._students = data.alunos,
+                        error => console.log("Student Service Error: " + error),
+                        () => console.log('Done.')
                      )
   }  
 
