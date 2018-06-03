@@ -1,9 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Params, Router } from '@angular/router'
-import { FormGroup, FormControl, FormArray, Validators } from "@angular/forms";
+import { FormGroup, FormControl, FormArray, Validators, ReactiveFormsModule } from "@angular/forms";
 
 import { StudentsServices } from '../../services/students.services';
 import { Student } from '../../models/student.model';
+import { Classroom } from '../../models/classroom.model';
 
 @Component({
   selector: 'app-student-edit',
@@ -14,64 +15,47 @@ import { Student } from '../../models/student.model';
 
 export class StudentEditComponent implements OnInit {
   id: string;
-  student: Student;
   editMode = false;
+  model = new Student('', '', null, '', '', '', '', '');
   studentForm: FormGroup;
 
   constructor(private route: ActivatedRoute, private services: StudentsServices, private router: Router) {}      
 
   ngOnInit() { 
-    this.id = this.route.snapshot.paramMap.get('id');
-    this.editMode = true;
-    this.initForm();
-    
-    /*this.route.params.subscribe(
-      (params: Params) => { 
-        this.id = params['id'];
-        this.editMode = params['id'] != null;
-        this.initForm();
-      }
-    );*/
+    this.model._id = this.route.snapshot.paramMap.get('id');
+    this.editMode = !!this.model._id;
+
+    if (this.editMode) this.initForm();
   }
   
-  private initForm(){    
-    let nome = '', nomeMae = '', nomePai = '', endereco = '', telefonePai = '', telefoneMae = '', turma = new FormArray([]);
+  private initForm() {
 
-    if(this.editMode){        
-        this.getStudentById(this.id); 
-                
-        /*nome = this.student.nome;
-        nomeMae = this.student.nomeMae;
-        nomePai = this.student.nomePai;
-        endereco = this.student.endereco;
-        telefoneMae = this.student.telefoneMae;
-        telefonePai = this.student.telefonePai;             
-
-        if(this.student['turma']){
-            for(let turma of this.student.turma){
-              turma.descricao = turma.descricao;
-              turma.id = turma.id;   
-        }
-      }*/
-    }   
-
-    /*this.studentForm = new FormGroup({
-      'nome': new FormControl(nome, Validators.required),
-      'nomeMae': new FormControl(nomeMae, Validators.required),
-      'nomePai': new FormControl(nomePai, Validators.required),
-      'endereco': new FormControl(endereco, Validators.required),
-      'telefoneMae': new FormControl(telefoneMae, Validators.required),
-      'telefonePai': new FormControl(telefonePai, Validators.required),
-      'turma': turma
-    })  */ 
-  }
-
-  getStudentById(id: string): void {
-    this.services.getStudentById(id)
-        .subscribe(data => this.student = data.aluno,
-                    error => console.log("Student Service Error: " + error),
-                    () => console.log('Done.'+ this.student + '-' + this.id)
-                )
+    this.services.getStudentById(this.model._id)
+    .subscribe((data) => {
+    
+      if (data.aluno) {
+        this.model._id = data.aluno._id;
+        this.model.nome = data.aluno.nome;
+        this.model.nomeMae = data.aluno.nomeMae;
+        this.model.telefoneMae = data.aluno.telefoneMae;
+        this.model.nomePai = data.aluno.nomePai;
+        this.model.telefonePai = data.aluno.telefonePai;
+        this.model.turma = new Classroom(data.aluno.turma._id, data.aluno.turma.descricao);
+      }            
+        /*
+        console.log(data);
+        this.studentForm = new FormGroup({
+          nome: new FormControl(data.nome, Validators.required),
+          nomeMae: new FormControl(data.nomeMae, Validators.required),
+          nomePai: new FormControl(data.nomePai, Validators.required),
+          endereco: new FormControl(data.endereco, Validators.required),
+          telefoneMae: new FormControl(data.telefoneMae, Validators.required),
+          telefonePai: new FormControl(data.telefonePai, Validators.required)
+          //turma: turma
+        }) */
+      },
+      error => console.log("Student Service Error: " + error)        
+      )
   }
 
   onSubmit(){ 
