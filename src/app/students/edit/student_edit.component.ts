@@ -50,8 +50,14 @@ export class StudentEditComponent implements OnInit {
     if(form.valid){
       if(this.editMode)       
         this.services.updateStudent(this.model._id, form.value);                   
-      else        
-        this.services.insertStudent(form.value);      
+      else {
+        this.services.insertStudent(form.value)
+        .subscribe((data) => {
+          console.log(data);
+        }
+        ,error => console.log(error))
+      }
+
    }
     this.onCancel(); 
   }
