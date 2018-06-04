@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Http, Response, RequestOptions, RequestOptionsArgs } from '@angular/http';
-import { Observable, Subject } from 'rxjs';
+import { Observable, Subject, throwError } from 'rxjs';
 import { map, catchError, retry } from 'rxjs/operators';
 import { HttpParams, HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
 import { Student } from "../models/student.model";
@@ -26,7 +26,7 @@ export class StudentsServices{
                     .pipe(
                         map((response => response.json())),
                         retry(2), 
-                        catchError((error: HttpErrorResponse) => Observable.throw(this.errorHandler(error)))  
+                        catchError(error => Observable.throw(error))                    
                     );                         
     }
 
@@ -36,7 +36,7 @@ export class StudentsServices{
                     .pipe(
                         map((response => response.json())),
                         retry(2),
-                        catchError((error: HttpErrorResponse) => Observable.throw(this.errorHandler(error))) 
+                        catchError(error => Observable.throw(error))   
                     );                         
     }
 
@@ -47,7 +47,7 @@ export class StudentsServices{
         return this.http
                     .put(this._url + id, values, this.httpOptions)
                     .pipe(                       
-                        catchError((error: HttpErrorResponse) => Observable.throw(this.errorHandler(error)))                    
+                        catchError(error => Observable.throw(error))                      
                     );
     }
 
@@ -58,7 +58,7 @@ export class StudentsServices{
         return this.http
                     .post(this._url, student, { headers: this.httpOptions})
                     .pipe(                        
-                        catchError((error: HttpErrorResponse) => Observable.throw(this.errorHandler(error)))                    
+                        catchError(error => Observable.throw(error))                      
                     );
     } 
     
@@ -67,12 +67,7 @@ export class StudentsServices{
         return this.http
                     .delete(this._url + id)
                     .pipe(                        
-                        catchError((error: HttpErrorResponse) => Observable.throw(this.errorHandler(error)))                    
+                        catchError(error => Observable.throw(error))                      
                     );
-    }
-    
-    errorHandler(error: any): void {
-        console.log("Erro na requisição http => " + error)
-    }
-    
+    } 
 }
