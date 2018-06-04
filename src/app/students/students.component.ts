@@ -33,4 +33,12 @@ export class StudentsComponent implements OnInit {
   onEditItem(id: any){
     this.router.navigate(['alunos/edit', id]);
   }
+
+  onDeleteItem(id: any){
+    this.services.deleteStudent(id);
+  }
+
+  onAdd(){
+    this.router.navigate(['alunos/create']);
+  }
 }

@@ -1,6 +1,6 @@
 <div class="row">
     <div class="col-xs-12">
-      <form (ngSubmit)="onSubmit(form)" #form="ngForm">
+      <form (ngSubmit)="onSubmit(studentForm)" #studentForm="ngForm">
         <div class="row">
           <div class="col-sm-5 form-group">
             <label for="name">Nome</label>
@@ -16,15 +16,15 @@
           </div>
           <div class="col-sm-5 form-group">
             <label for="name">Telefone da Mãe</label>
-            <input type="number" id="telefoneMae" class="form-control" name="telefoneMae" pattern="^[1-9]+[0-9]*$" [(ngModel)]="model.telefoneMae" required>
+            <input type="phone" id="telefoneMae" class="form-control" name="telefoneMae" pattern="^[1-9]+[0-9]*$" [(ngModel)]="model.telefoneMae">
           </div>
           <div class="col-sm-5 form-group">
             <label for="name">Telefone do Pai</label>
-            <input type="number" id="telefoneMae" class="form-control" name="telefonePai" pattern="^[1-9]+[0-9]*$" [(ngModel)]="model.telefonePai" required>
+            <input type="phone" id="telefoneMae" class="form-control" name="telefonePai" pattern="^[1-9]+[0-9]*$" [(ngModel)]="model.telefonePai">
           </div>
           <div class="col-sm-2 form-group">
             <label for="amount">Endereço</label>
-            <input type="text" id="endereco" class="form-control" name="endereco" [(ngModel)]="model.endereco" required>
+            <input type="text" id="endereco" class="form-control" name="endereco" [(ngModel)]="model.endereco">
           </div>
           <div class="col-sm-2 form-group">
             <label for="amount">Turma</label>
@@ -33,9 +33,8 @@
         </div>
         <div class="row">
           <div class="col-xs-12">
-            <button class="btn btn-success" type="submit" [disabled]="!form.valid">{{ editMode ? "Update" : "Add" }}</button>
-            <button class="btn btn-danger" type="button" (click)="onDelete()" *ngIf="editMode">Delete</button>
-            <button class="btn btn-primary" type="button" (click)="onClear()">Clear</button>
+            <button class="btn btn-success" type="submit" [disabled]="!studentForm.valid">{{ editMode ? "Atualizar" : "Adicionar" }}</button>            
+            <button class="btn btn-primary" type="button" (click)="onCancel()">Cancelar</button>
           </div>
         </div>
       </form>

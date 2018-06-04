@@ -1,4 +1,5 @@
 <div class="row">
+    <a class="btn btn-primary btn-sm" role="button" (click)="onAdd()">Adicionar</a>
     <table class="table">
         <thead class="thead-inverse">
             <tr>
@@ -24,6 +25,7 @@
                 <td class="text-center">{{student.endereco}}</td>   
                 <td class="text-center">{{student.turma.descricao}}</td>
                 <a class="btn btn-secondary btn-sm" role="button" (click)="onEditItem(student._id)">Editar</a>
+                <a class="btn btn-danger btn-sm" role="button" (click)="onDeleteItem(student._id)">Excluir</a>
             </tr>
         </tbody>
     </table>
