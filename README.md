@@ -27,6 +27,6 @@ Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protrac
 To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
 
 
-## How to Add Bootstrap to an Angular CLI project
+## Tutorials about Bootstrap NGX 
 
-Access this link for more information [Bootstrap](https://loiane.com/2017/08/how-to-add-bootstrap-to-an-angular-cli-project/).
+Access this link for more information [Bootstrap](https://valor-software.com/ngx-bootstrap/#/).
