@@ -3,6 +3,7 @@ import { Http, Response, RequestOptions, RequestOptionsArgs } from '@angular/htt
 import { Observable, Subject, throwError } from 'rxjs';
 import { map, catchError, retry } from 'rxjs/operators';
 import { HttpParams, HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
+
 import { Student } from "../models/student.model";
 import { Classroom } from "../models/classroom.model";
 
@@ -15,7 +16,7 @@ export class StudentsServices{
         this.httpOptions = {
             headers: new HttpHeaders({
                 'Content-Type':  'application/json',
-                'Authorization': 'my-auth-token'
+                //'Authorization': 'my-auth-token'
               })
         }
     }
@@ -26,7 +27,7 @@ export class StudentsServices{
                     .pipe(
                         map((response => response.json())),
                         retry(2), 
-                        catchError(error => Observable.throw(error))                    
+                        catchError(error => throwError(error))                                        
                     );                         
     }
 
@@ -36,7 +37,7 @@ export class StudentsServices{
                     .pipe(
                         map((response => response.json())),
                         retry(2),
-                        catchError(error => Observable.throw(error))   
+                        catchError(error => throwError(error))   
                     );                         
     }
 
@@ -45,9 +46,9 @@ export class StudentsServices{
 
         console.log("** Entrou no service " + id + ' - ' + values);
         return this.http
-                    .put(this._url + id, values, this.httpOptions)
+                    .put(this._url + id, values, { headers: this.httpOptions })
                     .pipe(                       
-                        catchError(error => Observable.throw(error))                      
+                        catchError(error => throwError(error))                      
                     );
     }
 
@@ -56,9 +57,9 @@ export class StudentsServices{
         
         console.log("** Entrou no service " + ' - ' + values);
         return this.http
-                    .post(this._url, student, { headers: this.httpOptions})
+                    .post(this._url, student, { headers: this.httpOptions })
                     .pipe(                        
-                        catchError(error => Observable.throw(error))                      
+                        catchError(error => throwError(error))                      
                     );
     } 
     
@@ -67,7 +68,7 @@ export class StudentsServices{
         return this.http
                     .delete(this._url + id)
                     .pipe(                        
-                        catchError(error => Observable.throw(error))                      
+                        catchError(error => throwError(error))                      
                     );
     } 
 }
