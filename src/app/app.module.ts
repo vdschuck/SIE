@@ -7,6 +7,7 @@ import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app.routing.module';
 import { SharedModule } from './shared/shared.module';
 import { StudentsModule } from './students/students.module';
+import { ClassroomModule } from './classroom/classroom.module';
 
 @NgModule({
   declarations: [
@@ -17,9 +18,10 @@ import { StudentsModule } from './students/students.module';
     HttpModule,
     FormsModule,
     AppRoutingModule,
+    ReactiveFormsModule,
     SharedModule,
     StudentsModule,
-    ReactiveFormsModule
+    ClassroomModule   
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -47,23 +47,21 @@ export class StudentEditComponent implements OnInit {
   }
 
   onSubmit(form: NgForm){ 
-    if(form.valid){
-      if(this.editMode){       
-        this.services.updateStudent(this.model._id, form.value)
+      if(form.valid){
+        if(this.editMode){       
+          this.services.updateStudent(this.model._id, form.value)
                       .subscribe((data) => {
-                        console.log(data);
+                          this.onCancel(); 
                       },
                       error => console.log(error));
-      } else {
-        this.services.insertStudent(form.value)
+        } else {
+          this.services.insertStudent(form.value)
                       .subscribe((data) => {
-                          console.log(data);
+                          this.onCancel(); 
                       },
                       error => console.log(error))
-      }
-
-   }
-    this.onCancel(); 
+        }
+      }    
   }
   
   onCancel(){

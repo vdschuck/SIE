@@ -1,0 +1,18 @@
+<div class="row">
+    <a class="btn btn-primary btn-sm" role="button" (click)="onAdd()">Adicionar</a>
+    <table class="table">
+        <thead class="thead-inverse">
+            <tr>
+                <th class="text-center">ID</th>
+                <th class="text-center">Descrição</th>                
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let classroom of _classroom">
+                <td class="text-center">{{classroom._id}}</td>
+                <td class="text-center">{{classroom.descricao}}</td> 
+                <a class="btn btn-danger btn-sm" role="button" (click)="onDeleteItem(classroom._id)">Excluir</a>
+            </tr>
+        </tbody>
+    </table>
+</div>

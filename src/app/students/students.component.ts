@@ -15,34 +15,32 @@ export class StudentsComponent implements OnInit {
 
   constructor(private services: StudentsServices, private router: Router) { }
 
+  ngOnInit() {    
+      this.getStudents();        
+  }
+
   getStudents(): void {
-        this.services.getStudents()
-                     .subscribe(
-                        data => this._students = data.alunos,
+      this.services.getStudents()
+                   .subscribe(
+                       data => this._students = data.alunos,
                         error => console.log("Student Service Error: " + error),
                         () => console.log('Done.')
                      )
-  }  
+  }   
   
-  ngOnInit() {    
-        this.getStudents();
-
-        console.log(this._students);
-  }
-
   onEditItem(id: any){
-    this.router.navigate(['alunos/edit', id]);
+    this.router.navigate(['alunos/editar', id]);
   }
 
   onDeleteItem(id: any){
     this.services.deleteStudent(id)
                   .subscribe((data) => {
-                      console.log(data);
+                      this.ngOnInit();
                   },
                   error => console.log(error));
   }
 
   onAdd(){
-    this.router.navigate(['alunos/create']);
+    this.router.navigate(['alunos/novo']);
   }
 }

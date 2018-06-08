@@ -30,7 +30,7 @@ export class ClassroomServices{
                     );                         
     }
 
-    getClassroomId(id: string){ 
+    getClassroomById(id: string){ 
         return this.http
                     .get(this._url + id)
                     .pipe(
