@@ -1,0 +1,35 @@
+<div class="row">
+    <div class="col-xs-12">
+      <form (ngSubmit)="onSubmit(occurrenceForm)" #occurrenceForm="ngForm">
+        <div class="row">
+          <div class="col-sm-5 form-group">
+            <label for="name">Nome</label>
+            <input type="text" id="nome" class="form-control" name="nome" [(ngModel)]="model.aluno.nome" required>
+          </div>
+          <div class="col-sm-5 form-group">
+            <label for="name">Data</label>
+            <input type="text" id="data" class="form-control" name="data" [(ngModel)]="model.data" required>
+          </div>
+          <div class="col-sm-5 form-group">
+            <label for="name">Resumo</label>
+            <input type="text" id="resumo" class="form-control" name="resumo" [(ngModel)]="model.resumo" required>
+          </div>
+          <div class="col-sm-5 form-group">
+            <label for="name">Tipo de ocorrência</label>
+            <input type="phone" id="tipoOcorrencia.descricao" class="form-control" name="tipoOcorrencia.descricao" [(ngModel)]="model.tipoOcorrencia.descricao">
+          </div>
+          <div class="col-sm-5 form-group">
+            <label for="name">Detalhes</label>
+            <input type="phone" id="detalhe" class="form-control" name="detalhe" [(ngModel)]="model.detalhe">
+          </div> 
+        </div>       
+        <div class="row">
+          <div class="col-xs-12">
+            <button class="btn btn-success" type="submit" [disabled]="!occurrenceForm.valid">{{ editMode ? "Atualizar" : "Adicionar" }}</button>            
+            <button class="btn btn-primary" type="button" (click)="onCancel()">Cancelar</button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+  

@@ -24,8 +24,10 @@
                 <td class="text-center">{{student.telefoneMae}}</td>
                 <td class="text-center">{{student.endereco}}</td>   
                 <td class="text-center">{{student.turma.descricao}}</td>
-                <a class="btn btn-secondary btn-sm" role="button" (click)="onEditItem(student._id)">Editar</a>
-                <a class="btn btn-danger btn-sm" role="button" (click)="onDeleteItem(student._id)">Excluir</a>
+                <td>
+                    <a class="btn btn-secondary btn-sm" role="button" (click)="onEditItem(student._id)">Editar</a>
+                    <a class="btn btn-danger btn-sm" role="button" (click)="onDeleteItem(student._id)">Excluir</a>
+                </td>
             </tr>
         </tbody>
     </table>

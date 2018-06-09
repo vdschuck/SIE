@@ -23,8 +23,8 @@ export class ClassroomComponent implements OnInit {
       this.services.getClassroom()
                     .subscribe(
                         data => this._classroom = data.turmas,
-                        error => console.log("Student Service Error: " + error),
-                        () => console.log('Done.')
+                        error => console.log("=> Service Error " + error),
+                        () => console.log('=> Finish')
                      )
   }  
 

@@ -23,8 +23,8 @@ export class StudentsComponent implements OnInit {
       this.services.getStudents()
                    .subscribe(
                        data => this._students = data.alunos,
-                        error => console.log("Student Service Error: " + error),
-                        () => console.log('Done.')
+                        error => console.log("=> Service Error  " + error),
+                        () => console.log('=> Finish')
                      )
   }   
   

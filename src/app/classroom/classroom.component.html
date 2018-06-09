@@ -11,7 +11,9 @@
             <tr *ngFor="let classroom of _classroom">
                 <td class="text-center">{{classroom._id}}</td>
                 <td class="text-center">{{classroom.descricao}}</td> 
-                <a class="btn btn-danger btn-sm" role="button" (click)="onDeleteItem(classroom._id)">Excluir</a>
+                <td>
+                    <a class="btn btn-danger btn-sm" role="button" (click)="onDeleteItem(classroom._id)">Excluir</a>
+                </td>
             </tr>
         </tbody>
     </table>

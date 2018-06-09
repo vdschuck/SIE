@@ -31,19 +31,18 @@ export class StudentEditComponent implements OnInit {
   private initForm() {
 
     this.services.getStudentById(this.model._id)
-    .subscribe((data) => {    
-      if (data.aluno) {
-        this.model._id = data.aluno._id;
-        this.model.nome = data.aluno.nome;
-        this.model.nomeMae = data.aluno.nomeMae;
-        this.model.telefoneMae = data.aluno.telefoneMae;
-        this.model.nomePai = data.aluno.nomePai;
-        this.model.telefonePai = data.aluno.telefonePai;
-        this.model.turma = new Classroom(data.aluno.turma._id, data.aluno.turma.descricao);
-      } 
-    },
-      error => console.log("Student Service Error: " + error)        
-      )
+        .subscribe((data) => {    
+          if (data.aluno) {
+            this.model._id = data.aluno._id;
+            this.model.nome = data.aluno.nome;
+            this.model.nomeMae = data.aluno.nomeMae;
+            this.model.telefoneMae = data.aluno.telefoneMae;
+            this.model.nomePai = data.aluno.nomePai;
+            this.model.telefonePai = data.aluno.telefonePai;
+            this.model.turma = new Classroom(data.aluno.turma._id, data.aluno.turma.descricao);
+          } 
+        },
+        error => console.log("=> Service Error " + error))
   }
 
   onSubmit(form: NgForm){ 

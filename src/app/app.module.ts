@@ -8,6 +8,7 @@ import { AppRoutingModule } from './app.routing.module';
 import { SharedModule } from './shared/shared.module';
 import { StudentsModule } from './students/students.module';
 import { ClassroomModule } from './classroom/classroom.module';
+import { OccurrenceModule } from './occurrence/occurrence.module';
 
 @NgModule({
   declarations: [
@@ -21,7 +22,8 @@ import { ClassroomModule } from './classroom/classroom.module';
     ReactiveFormsModule,
     SharedModule,
     StudentsModule,
-    ClassroomModule   
+    ClassroomModule,
+    OccurrenceModule   
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -1,9 +1,9 @@
 export class OccurrenceType {
-    public id : string;
+    public _id : string;
     public descricao : string; 
 
-    constructor(id: string, descricao: string){
-        this.id = id;
+    constructor(_id: string, descricao: string){
+        this._id = _id;
         this.descricao = descricao;                
     }
 }
