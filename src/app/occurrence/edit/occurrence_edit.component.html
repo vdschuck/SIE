@@ -2,26 +2,42 @@
     <div class="col-xs-12">
       <form (ngSubmit)="onSubmit(occurrenceForm)" #occurrenceForm="ngForm">
         <div class="row">
-          <div class="col-sm-5 form-group">
-            <label for="name">Nome</label>
-            <input type="text" id="nome" class="form-control" name="nome" [(ngModel)]="model.aluno.nome" required>
-          </div>
+            <div class="col-sm-5 form-group"> 
+                <label for="aluno">Aluno</label>           
+                <select class="form-control" [(ngModel)]="model.aluno._id" name="nome" required>
+                  <option *ngFor="let student of _students" [ngValue]="student._id">
+                      {{student.nome}}
+                  </option>
+                </select>
+            </div> 
           <div class="col-sm-5 form-group">
             <label for="name">Data</label>
             <input type="text" id="data" class="form-control" name="data" [(ngModel)]="model.data" required>
           </div>
-          <div class="col-sm-5 form-group">
-            <label for="name">Resumo</label>
-            <input type="text" id="resumo" class="form-control" name="resumo" [(ngModel)]="model.resumo" required>
+          <div class="col-sm-5 form-group"> 
+              <label for="turma">Turma</label>           
+              <select class="form-control" [(ngModel)]="model.turma._id" name="turma">
+                <option *ngFor="let classroom of _classroom" [ngValue]="classroom._id">
+                    {{classroom.descricao}}
+                </option>
+              </select>
+          </div>
+          <div class="col-sm-5 form-group"> 
+              <label for="tipoOcorrencia">Tipo de ocorrência</label>           
+              <select class="form-control" [(ngModel)]="model.tipoOcorrencia._id" name="tipoOcorrencia">
+                <option *ngFor="let occurrenceType of _occurrenceType" [ngValue]="occurrenceType._id">
+                    {{occurrenceType.descricao}}
+                </option>
+              </select>
           </div>
           <div class="col-sm-5 form-group">
-            <label for="name">Tipo de ocorrência</label>
-            <input type="phone" id="tipoOcorrencia.descricao" class="form-control" name="tipoOcorrencia.descricao" [(ngModel)]="model.tipoOcorrencia.descricao">
+              <label for="name">Resumo</label>
+              <input type="text" id="resumo" class="form-control" name="resumo" [(ngModel)]="model.resumo" required>
           </div>
           <div class="col-sm-5 form-group">
-            <label for="name">Detalhes</label>
-            <input type="phone" id="detalhe" class="form-control" name="detalhe" [(ngModel)]="model.detalhe">
-          </div> 
+              <label for="detalhes">Detalhes</label>
+              <textarea class="form-control" id="detalhes" name="detalhes" [(ngModel)]="model.detalhes" rows="3"></textarea>             
+          </div>
         </div>       
         <div class="row">
           <div class="col-xs-12">

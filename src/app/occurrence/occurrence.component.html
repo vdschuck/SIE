@@ -5,20 +5,20 @@
             <tr>
                 <th class="text-center">ID</th>
                 <th class="text-center">Aluno</th> 
+                <th class="text-center">Turma</th> 
                 <th class="text-center">Data</th>   
                 <th class="text-center">Resumo</th>
-                <th class="text-center">Tipo de ocorrêcia</th>
-                <th class="text-center">Detalhes</th>               
+                <th class="text-center">Tipo de ocorrêcia</th>                             
             </tr>
         </thead>
         <tbody>
             <tr *ngFor="let occurrence of _occurrence">
                 <td class="text-center">{{occurrence._id}}</td>
                 <td class="text-center">{{occurrence.aluno.nome}}</td> 
+                <td class="text-center">{{occurrence.turma.descricao}}</td> 
                 <td class="text-center">{{occurrence.data}}</td> 
                 <td class="text-center">{{occurrence.resumo}}</td> 
-                <td class="text-center">{{occurrence.tipoOcorrencia.descricao}}</td> 
-                <td class="text-center">{{occurrence.Detalhes}}</td> 
+                <td class="text-center">{{occurrence.tipoOcorrencia.descricao}}</td>                
                 <td>
                     <a class="btn btn-secondary btn-sm" role="button" (click)="onEditItem(occurrence._id)">Editar</a>
                     <a class="btn btn-danger btn-sm" role="button" (click)="onDeleteItem(occurrence._id)">Excluir</a>

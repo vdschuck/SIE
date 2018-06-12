@@ -47,20 +47,10 @@ export class StudentEditComponent implements OnInit {
           } 
         },
         error => console.log("=> Service Error " + error));
-  }
-
-  getClassroom(): void {
-    this.classroomServices.getClassroom()
-                  .subscribe(
-                      data => this._classroom = data.turmas,
-                      error => console.log("=> Service Error " + error),
-                      () => console.log('=> Finish')
-                   )
-  }  
+  } 
 
   onSubmit(form: NgForm){ 
-      if(form.valid){
-        console.log(form)
+      if(form.valid){        
         if(this.editMode){       
           this.services.updateStudent(this.model._id, form.value)
                       .subscribe((data) => {
@@ -80,5 +70,14 @@ export class StudentEditComponent implements OnInit {
   onCancel(){
     this.router.navigate(['alunos']);
   }
+
+  getClassroom(): void {
+    this.classroomServices.getClassroom()
+                  .subscribe(
+                      data => this._classroom = data.turmas,
+                      error => console.log("=> Service Error " + error),
+                      () => console.log('=> Finish')
+                   )
+  }  
 
 }

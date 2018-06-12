@@ -24,7 +24,7 @@ export class OccurrenceComponent implements OnInit {
                     .subscribe(
                         data => this._occurrence = data.ocorrencias,
                         error => console.log("=> Service Error " + error),
-                        () => console.log('=> Finish')
+                        () => console.log(this._occurrence)
                      )
   }  
 
