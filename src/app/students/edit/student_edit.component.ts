@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Params, Router } from '@angular/router'
 import { FormGroup, FormControl, FormArray, Validators, ReactiveFormsModule, NgForm } from "@angular/forms";
 
+import { ClassroomServices } from '../../services/classroom.services';
 import { StudentsServices } from '../../services/students.services';
 import { Student } from '../../models/student.model';
 import { Classroom } from '../../models/classroom.model';
@@ -10,22 +11,25 @@ import { Classroom } from '../../models/classroom.model';
   selector: 'app-student-edit',
   templateUrl: './student_edit.component.html',
   styleUrls: ['./student_edit.component.css'],
-  providers: [StudentsServices]
+  providers: [StudentsServices, ClassroomServices]  
 })
 
 export class StudentEditComponent implements OnInit {
   id: string;
   editMode = false;
-  model = new Student('', '', null, '', '', '', '', '');
+  model = new Student('', '', new Classroom('', ''), '', '', '', '', '');
   studentForm: FormGroup;
+  _classroom: Classroom[];  
 
-  constructor(private route: ActivatedRoute, private services: StudentsServices, private router: Router) {}      
+  constructor(private route: ActivatedRoute, private services: StudentsServices, private classroomServices: ClassroomServices,  private router: Router) {}      
 
   ngOnInit() { 
     this.model._id = this.route.snapshot.paramMap.get('id');
     this.editMode = !!this.model._id;
 
     if (this.editMode) this.initForm();
+
+    this.getClassroom();
   }
   
   private initForm() {
@@ -42,11 +46,21 @@ export class StudentEditComponent implements OnInit {
             this.model.turma = new Classroom(data.aluno.turma._id, data.aluno.turma.descricao);
           } 
         },
-        error => console.log("=> Service Error " + error))
+        error => console.log("=> Service Error " + error));
   }
+
+  getClassroom(): void {
+    this.classroomServices.getClassroom()
+                  .subscribe(
+                      data => this._classroom = data.turmas,
+                      error => console.log("=> Service Error " + error),
+                      () => console.log('=> Finish')
+                   )
+  }  
 
   onSubmit(form: NgForm){ 
       if(form.valid){
+        console.log(form)
         if(this.editMode){       
           this.services.updateStudent(this.model._id, form.value)
                       .subscribe((data) => {

@@ -14,7 +14,7 @@ import { StudentEditComponent } from './edit/student_edit.component';
     imports: [      
         AppRoutingModule,
         CommonModule,
-        FormsModule
+        FormsModule    
     ],
     exports: [
         AppRoutingModule,        

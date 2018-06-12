@@ -3,36 +3,40 @@
       <form (ngSubmit)="onSubmit(studentForm)" #studentForm="ngForm">
         <div class="row">
           <div class="col-sm-5 form-group">
-            <label for="name">Nome</label>
+            <label for="nome">Nome</label>
             <input type="text" id="nome" class="form-control" name="nome" [(ngModel)]="model.nome" required>
           </div>
           <div class="col-sm-5 form-group">
-            <label for="name">Nome da Mãe</label>
+            <label for="nomeMae">Nome da Mãe</label>
             <input type="text" id="nomeMae" class="form-control" name="nomeMae" [(ngModel)]="model.nomeMae" required>
           </div>
           <div class="col-sm-5 form-group">
-            <label for="name">Nome do Pai</label>
+            <label for="nomePai">Nome do Pai</label>
             <input type="text" id="nomePai" class="form-control" name="nomePai" [(ngModel)]="model.nomePai" required>
           </div>
           <div class="col-sm-5 form-group">
-            <label for="name">Telefone da Mãe</label>
+            <label for="telefoneMae">Telefone da Mãe</label>
             <input type="phone" id="telefoneMae" class="form-control" name="telefoneMae" pattern="^[1-9]+[0-9]*$" [(ngModel)]="model.telefoneMae">
           </div>
           <div class="col-sm-5 form-group">
-            <label for="name">Telefone do Pai</label>
+            <label for="telefonePai">Telefone do Pai</label>
             <input type="phone" id="telefoneMae" class="form-control" name="telefonePai" pattern="^[1-9]+[0-9]*$" [(ngModel)]="model.telefonePai">
           </div>
-          <div class="col-sm-2 form-group">
-            <label for="amount">Endereço</label>
+          <div class="col-sm-5 form-group">
+            <label for="endereco">Endereço</label>
             <input type="text" id="endereco" class="form-control" name="endereco" [(ngModel)]="model.endereco">
-          </div>
-          <div class="col-sm-2 form-group">
-            <label for="amount">Turma</label>
-            <input type="text" id="turma" class="form-control" name="turma" [(ngModel)]="model.turma && model.turma.descricao" required>
+          </div>          
+          <div class="col-sm-5 form-group"> 
+            <label for="turma">Turma</label>           
+            <select class="form-control" [(ngModel)]="model.turma._id" name="turma">
+              <option *ngFor="let classroom of _classroom" [ngValue]="classroom._id">
+                  {{classroom.descricao}}
+              </option>
+          </select>
           </div>
         </div>
         <div class="row">
-          <div class="col-xs-12">
+          <div class="col-sm-12">
             <button class="btn btn-success" type="submit" [disabled]="!studentForm.valid">{{ editMode ? "Atualizar" : "Adicionar" }}</button>            
             <button class="btn btn-primary" type="button" (click)="onCancel()">Cancelar</button>
           </div>
