@@ -1,1 +1,5 @@
-/* You can add global styles to this file, and also import other style files */
+.bd-clipboard {
+    background-color: #e9ecef;
+    border-radius: .3rem;
+    padding: 1.5rem 1rem;
+}

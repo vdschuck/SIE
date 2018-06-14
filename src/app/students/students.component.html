@@ -1,17 +1,43 @@
+<div class="row bd-clipboard mb-4 mt-1">
+    <form class="form-inline">
+        <div class="form-group">
+            <label for="nome" class="col-sm-2 col-form-label">Nome: </label>
+            <div class="col-sm-10">
+                <input type="text" class="form-control" id="nome" placeholder="Nome do Aluno">
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="turma" class="col-sm-2 col-form-label">Turma: </label>
+            <div class="col-sm-10">
+                <select class="form-control" name="turma">
+                    <option>
+                        teste
+                    </option>
+                </select>
+            </div>
+        </div>
+        <div class="form-group float-right">
+            <div class="col-md-10">
+                <button type="submit" class="btn btn-primary">Pesquisar</button>
+            </div>
+        </div>
+    </form>
+</div>
+
 <div class="row">
-    <a class="btn btn-primary btn-sm" role="button" (click)="onAdd()">Adicionar</a>
-    <table class="table">
+    <a class="btn btn-primary btn-sm" role="button" (click)="onAdd()">Cadastrar</a>
+    <table class="table table-striped table-bordered">
         <thead class="thead-inverse">
             <tr>
-                <th class="text-center">ID</th>
-                <th class="text-center">Nome</th>
-                <th class="text-center">Mãe</th>
-                <th class="text-center">Pai</th>
-                <th class="text-center">Telefone da mãe</th>
-                <th class="text-center">Telefone do Pai</th>
-                <th class="text-center">Endereço</th>
-                <th class="text-center">Turma</th>
-                <th class="text-center"></th>
+                <th scope="col" class="text-center">ID</th>
+                <th scope="col" class="text-center">Nome</th>
+                <th scope="col" class="text-center">Mãe</th>
+                <th scope="col" class="text-center">Pai</th>
+                <th scope="col" class="text-center">Telefone da mãe</th>
+                <th scope="col" class="text-center">Telefone do Pai</th>
+                <th scope="col" class="text-center">Endereço</th>
+                <th scope="col" class="text-center">Turma</th>
+                <th scope="col" class="text-center">Ações</th>
             </tr>
         </thead>
         <tbody>
@@ -22,11 +48,11 @@
                 <td class="text-center">{{student.nomePai}}</td>
                 <td class="text-center">{{student.telefonePai}}</td>
                 <td class="text-center">{{student.telefoneMae}}</td>
-                <td class="text-center">{{student.endereco}}</td>   
+                <td class="text-center">{{student.endereco}}</td>
                 <td class="text-center">{{student.turma.descricao}}</td>
                 <td>
-                    <a class="btn btn-secondary btn-sm" role="button" (click)="onEditItem(student._id)">Editar</a>
-                    <a class="btn btn-danger btn-sm" role="button" (click)="onDeleteItem(student._id)">Excluir</a>
+                    <a class="btn btn-secondary btn-sm mr-1" role="button" (click)="onEditItem(student._id)">Editar</a>
+                    <a class="btn btn-danger btn-sm ml-1" role="button" (click)="onDeleteItem(student._id)">Excluir</a>
                 </td>
             </tr>
         </tbody>
