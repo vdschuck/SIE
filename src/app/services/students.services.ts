@@ -43,8 +43,7 @@ export class StudentsServices{
 
     updateStudent(id: string, student: Student){        
         let values = JSON.stringify(student);
-
-        console.log("** Entrou no service " + id + ' - ' + values);
+        
         return this.http
                     .put(this._url + id, values, { headers: this.httpOptions })
                     .pipe(                       
@@ -53,9 +52,8 @@ export class StudentsServices{
     }
 
     insertStudent(student: Student){
-        let values = JSON.stringify(student);
+        let values = JSON.stringify(student);        
         
-        console.log("** Entrou no service " + ' - ' + values);
         return this.http
                     .post(this._url, student, { headers: this.httpOptions })
                     .pipe(                        
@@ -63,8 +61,7 @@ export class StudentsServices{
                     );
     } 
     
-    deleteStudent(id: string){
-        console.log("** Entrou no service " + ' - ' + id);        
+    deleteStudent(id: string){        
         return this.http
                     .delete(this._url + id)
                     .pipe(                        
