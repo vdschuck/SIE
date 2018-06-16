@@ -1,60 +1,68 @@
-<div class="row bd-clipboard mb-4 mt-1">
-    <form class="form-inline">
-        <div class="form-group">
-            <label for="nome" class="col-sm-2 col-form-label">Nome: </label>
-            <div class="col-sm-10">
-                <input type="text" class="form-control" id="nome" placeholder="Nome do Aluno">
-            </div>
+<div class="clipboard">
+    <div class="title">
+        <div class="col-sm">
+            <h5 class="text-white">Lista de Alunos</h5>          
         </div>
-        <div class="form-group">
-            <label for="turma" class="col-sm-2 col-form-label">Turma: </label>
-            <div class="col-sm-10">
-                <select class="form-control" name="turma">
-                    <option>
-                        teste
-                    </option>
-                </select>
-            </div>
+        <div class="col-sm">
+            <a class="btn btn-light btn-sm float-right" role="button" (click)="onAdd()">Novo Cadastro</a>
         </div>
-        <div class="form-group float-right">
-            <div class="col-md-10">
-                <button type="submit" class="btn btn-primary">Pesquisar</button>
-            </div>
-        </div>
-    </form>
-</div>
+    </div>
 
-<div class="row">
-    <a class="btn btn-primary btn-sm" role="button" (click)="onAdd()">Cadastrar</a>
-    <table class="table table-striped table-bordered">
-        <thead class="thead-inverse">
-            <tr>
-                <th scope="col" class="text-center">ID</th>
-                <th scope="col" class="text-center">Nome</th>
-                <th scope="col" class="text-center">Mãe</th>
-                <th scope="col" class="text-center">Pai</th>
-                <th scope="col" class="text-center">Telefone da mãe</th>
-                <th scope="col" class="text-center">Telefone do Pai</th>
-                <th scope="col" class="text-center">Endereço</th>
-                <th scope="col" class="text-center">Turma</th>
-                <th scope="col" class="text-center">Ações</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr *ngFor="let student of _students">
-                <td class="text-center">{{student._id}}</td>
-                <td class="text-center">{{student.nome}}</td>
-                <td class="text-center">{{student.nomeMae}}</td>
-                <td class="text-center">{{student.nomePai}}</td>
-                <td class="text-center">{{student.telefonePai}}</td>
-                <td class="text-center">{{student.telefoneMae}}</td>
-                <td class="text-center">{{student.endereco}}</td>
-                <td class="text-center">{{student.turma.descricao}}</td>
-                <td>
-                    <a class="btn btn-secondary btn-sm mr-1" role="button" (click)="onEditItem(student._id)">Editar</a>
-                    <a class="btn btn-danger btn-sm ml-1" role="button" (click)="onDeleteItem(student._id)">Excluir</a>
-                </td>
-            </tr>
-        </tbody>
-    </table>
+    <div class="content">
+        <form class="form-inline">
+            <div class="form-group">
+                <label for="nome" class="col-sm-2 col-form-label">Nome: </label>
+                <div class="col-sm-8">
+                    <input type="text" class="form-control" id="nome" placeholder="Nome do Aluno">
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="turma" class="col-sm-2 col-form-label">Turma: </label>
+                <div class="col-sm-8">
+                    <select class="form-control" name="turma">
+                        <option>
+                            teste
+                        </option>
+                    </select>
+                </div>
+            </div>
+            <div class="float-right">
+                <div class="col-md-4">
+                    <button type="submit" class="btn btn-primary">Pesquisar</button>
+                </div>
+            </div>
+        </form>
+
+        <hr>
+
+        <table class="table table-striped table-bordered">
+            <thead class="thead-inverse">
+                <tr>
+                    <th scope="col" class="text-center">Nome</th>
+                    <th scope="col" class="text-center">Mãe</th>
+                    <th scope="col" class="text-center">Pai</th>
+                    <th scope="col" class="text-center">Telefone da mãe</th>
+                    <th scope="col" class="text-center">Telefone do Pai</th>
+                    <th scope="col" class="text-center">Endereço</th>
+                    <th scope="col" class="text-center">Turma</th>
+                    <th scope="col" class="text-center">Ações</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let student of _students">
+                    <td class="text-center">{{student.nome}}</td>
+                    <td class="text-center">{{student.nomeMae}}</td>
+                    <td class="text-center">{{student.nomePai}}</td>
+                    <td class="text-center">{{student.telefonePai}}</td>
+                    <td class="text-center">{{student.telefoneMae}}</td>
+                    <td class="text-center">{{student.endereco}}</td>
+                    <td class="text-center">{{student.turma.descricao}}</td>
+                    <td>
+                        <a class="btn btn-success text-white btn-sm mr-1" role="button" aria-pressed="true" (click)="onEditItem(student._id)">Editar</a>
+                        <a class="btn btn-danger text-white btn-sm ml-1" role="button" aria-pressed="true" (click)="onDeleteItem(student._id)">Excluir</a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
 </div>
