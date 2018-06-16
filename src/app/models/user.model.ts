@@ -1,11 +1,9 @@
-export class User {
-    public _id : string;
-    public nome: string;
+export class User {    
+    public usuario: string;
     public senha: string;  
 
-    constructor(_id : string, nome: string, senha: string ){
-        this._id = _id;
-        this.nome = nome;
+    constructor(usuario: string, senha: string ){        
+        this.usuario = usuario;
         this.senha = senha; 
     }
 }

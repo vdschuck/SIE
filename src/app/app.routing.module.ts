@@ -8,10 +8,13 @@ import { ClassroomComponent } from './classroom/classroom.component';
 import { ClassroomEditComponent } from './classroom/edit/classroom_edit.component';
 import { OccurrenceComponent } from './occurrence/occurrence.component';
 import { OccurrenceEditComponent } from './occurrence/edit/occurrence_edit.component';
+import { SigninComponent } from './auth/sign_in.component';
+import { AuthGuardService as AuthGuard } from './services/auth-guard.service';
 
 const appRoutes: Routes = [
     { path: '', component: HomeComponent },
-    { path: 'alunos', component: StudentsComponent },
+    { path: 'entrar', component: SigninComponent },
+    { path: 'alunos', component: StudentsComponent, canActivate: [AuthGuard] },
     { path: 'alunos/editar/:id', component: StudentEditComponent },
     { path: 'alunos/novo', component: StudentEditComponent },
     { path: 'turmas', component: ClassroomComponent },
@@ -23,8 +26,9 @@ const appRoutes: Routes = [
 
 @NgModule({
     // EnableTracing shows all logs in the console
-    imports: [RouterModule.forRoot(appRoutes, { preloadingStrategy: PreloadAllModules, enableTracing: true })],
-    exports: [RouterModule]
+    imports: [RouterModule.forRoot(appRoutes, { preloadingStrategy: PreloadAllModules, enableTracing: false })],
+    exports: [RouterModule],
+    providers: [ AuthGuard ]
 })
 
 export class AppRoutingModule {}

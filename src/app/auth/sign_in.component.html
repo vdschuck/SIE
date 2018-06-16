@@ -1,0 +1,25 @@
+<div class="clipboard">
+  <div class="content">
+    <div class="col-xs-12">
+      <form (ngSubmit)="onSubmit(signinForm)" #signinForm="ngForm">
+        <div class="row">
+          <div class="col-sm-5 form-group">
+            <label for="name">Login</label>
+            <input type="text" id="usuario" class="form-control" name="descricao" [(ngModel)]="model.usuario" required>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-sm-5 form-group">
+            <label for="name">Senha</label>
+            <input type="password" id="senha" class="form-control" name="descricao" [(ngModel)]="model.senha" required>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-sm-5">
+            <button class="btn btn-primary btn-sm mr-1" type="submit" >Entrar</button>            
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

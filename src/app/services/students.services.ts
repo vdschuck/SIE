@@ -6,24 +6,25 @@ import { HttpParams, HttpClient, HttpErrorResponse, HttpHeaders } from '@angular
 
 import { Student } from "../models/student.model";
 import { Classroom } from "../models/classroom.model";
+import { AuthService } from '../services/auth.service';
 
 @Injectable()
 export class StudentsServices{   
     private _url = 'https://escolamossman.herokuapp.com/api/aluno/'; 
     private httpOptions: any;
 
-    constructor(private http: Http){             
+    constructor(private http: Http, private authService : AuthService){             
         this.httpOptions = {
             headers: new HttpHeaders({
                 'Content-Type':  'application/json',
-                //'Authorization': 'my-auth-token'
+                'Authorization': this.authService.getToken()
               })
         }
     }
 
     getStudents(){
         return this.http
-                    .get(this._url)
+                    .get(this._url, this.httpOptions)
                     .pipe(
                         map((response => response.json())),
                         retry(2), 
