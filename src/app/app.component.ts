@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 
-import { AuthGuardService } from "./services/auth_guard.service";
+import { AuthService } from "./services/auth.service";
 
 @Component({
   selector: 'app-root',
@@ -9,10 +9,13 @@ import { AuthGuardService } from "./services/auth_guard.service";
 })
 export class AppComponent {
 
-  constructor(private authGuardService: AuthGuardService) { }
+  constructor(private authService: AuthService) { }
 
   isLogged(): boolean {
-    return this.authGuardService.canActivate();
+    if (this.authService.isAuthenticated())
+      return true;
+    else
+      return false
   }
 
 }

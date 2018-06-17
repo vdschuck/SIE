@@ -56,7 +56,7 @@ export class StudentEditComponent implements OnInit {
                       .subscribe((data) => {
                           this.onCancel(); 
                       },
-                      error => console.log(error));
+                      error => console.log("=> Service Error " + error));
         } else {
           this.services.insertStudent(form.value)
                       .subscribe((data) => {

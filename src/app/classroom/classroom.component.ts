@@ -10,37 +10,35 @@ import { Classroom } from '../models/classroom.model';
   styleUrls: ['./classroom.component.css'],
   providers: [ClassroomServices]
 })
-export class ClassroomComponent implements OnInit {  
-  _classroom: Classroom[];  
+export class ClassroomComponent implements OnInit {
+  _classroom: Classroom[];
 
   constructor(private services: ClassroomServices, private router: Router) { }
 
-  ngOnInit() {    
-      this.getClassroom();    
+  ngOnInit() {
+    this.getClassroom();
   }
 
   getClassroom(): void {
-      this.services.getClassroom()
-                    .subscribe(
-                        data => this._classroom = data.turmas,
-                        error => console.log("=> Service Error " + error),
-                        () => console.log('=> Finish')
-                     )
-  }  
+    this.services.getClassroom()
+      .subscribe(
+        data => this._classroom = data.turmas,
+        error => console.log("=> Service Error " + error));
+  }
 
-  onEditItem(id: any){
+  onEditItem(id: any) {
     this.router.navigate(['turmas/edit', id]);
   }
 
-  onDeleteItem(id: any){
+  onDeleteItem(id: any) {
     this.services.deleteClassroom(id)
-                  .subscribe((data) => {
-                      this.ngOnInit();      
-                  },
-                  error => console.log(error));
+      .subscribe((data) => {
+        this.ngOnInit();
+      },
+        error => console.log("=> Service Error  " + error));
   }
 
-  onAdd(){
+  onAdd() {
     this.router.navigate(['turmas/nova']);
   }
 }

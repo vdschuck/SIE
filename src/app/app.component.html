@@ -1,5 +1,7 @@
-<header *ngIf="isLogged()">
-  <app-header></app-header>
+<header>
+  <div *ngIf="isLogged()">
+    <app-header></app-header>
+  </div>
 </header>
 <div class="container">
   <router-outlet></router-outlet>

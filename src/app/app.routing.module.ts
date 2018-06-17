@@ -8,20 +8,20 @@ import { ClassroomComponent } from './classroom/classroom.component';
 import { ClassroomEditComponent } from './classroom/edit/classroom_edit.component';
 import { OccurrenceComponent } from './occurrence/occurrence.component';
 import { OccurrenceEditComponent } from './occurrence/edit/occurrence_edit.component';
-import { SigninComponent } from './auth/sign_in.component';
+import { LoginComponent } from './auth/login/login.component';
 import { AuthGuardService as AuthGuard } from './services/auth_guard.service';
 
 const appRoutes: Routes = [
-    { path: '', component: HomeComponent },
-    { path: 'entrar', component: SigninComponent },
+    { path: '', component: HomeComponent, canActivate: [AuthGuard] },  
+    { path: 'entrar', component: LoginComponent },
     { path: 'alunos', component: StudentsComponent, canActivate: [AuthGuard] },
-    { path: 'alunos/editar/:id', component: StudentEditComponent },
-    { path: 'alunos/novo', component: StudentEditComponent },
-    { path: 'turmas', component: ClassroomComponent },
-    { path: 'turmas/nova', component: ClassroomEditComponent },
-    { path: 'ocorrencias', component: OccurrenceComponent},
-    { path: 'ocorrencias/editar/:id', component: OccurrenceEditComponent},
-    { path: 'ocorrencias/nova', component: OccurrenceEditComponent}
+    { path: 'alunos/editar/:id', component: StudentEditComponent, canActivate: [AuthGuard] },
+    { path: 'alunos/novo', component: StudentEditComponent, canActivate: [AuthGuard] },
+    { path: 'turmas', component: ClassroomComponent, canActivate: [AuthGuard] },
+    { path: 'turmas/nova', component: ClassroomEditComponent, canActivate: [AuthGuard] },
+    { path: 'ocorrencias', component: OccurrenceComponent, canActivate: [AuthGuard] },
+    { path: 'ocorrencias/editar/:id', component: OccurrenceEditComponent, canActivate: [AuthGuard]},
+    { path: 'ocorrencias/nova', component: OccurrenceEditComponent, canActivate: [AuthGuard]}
 ];
 
 @NgModule({

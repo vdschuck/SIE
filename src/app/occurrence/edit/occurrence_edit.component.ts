@@ -23,13 +23,13 @@ export class OccurrenceEditComponent implements OnInit {
   editMode = false;
   model = new Occurrence('', new Student('', '', null, '', '', '', '', ''), '', '', new OccurrenceType('', ''), '', new Classroom('', ''));
   occurrenceForm: FormGroup;
-  _classroom: Classroom[]; 
+  _classroom: Classroom[];
   _students: Student[];
-  _occurrenceType: OccurrenceType[]; 
+  _occurrenceType: OccurrenceType[];
 
-  constructor(private route: ActivatedRoute, private services: OccurrenceServices, private classroomServices: ClassroomServices, private studentServices: StudentsServices, private occurrenceTypeServices: OccurrenceTypeServices, private router: Router) {}      
+  constructor(private route: ActivatedRoute, private services: OccurrenceServices, private classroomServices: ClassroomServices, private studentServices: StudentsServices, private occurrenceTypeServices: OccurrenceTypeServices, private router: Router) { }
 
-  ngOnInit() { 
+  ngOnInit() {
     this.model._id = this.route.snapshot.paramMap.get('id');
     this.editMode = !!this.model._id;
 
@@ -39,65 +39,65 @@ export class OccurrenceEditComponent implements OnInit {
     this.getOccurrenceType();
     this.getStudents();
   }
-  
+
   private initForm() {
 
     this.services.getOccurrenceById(this.model._id)
-        .subscribe((data) => {    
-            if (data.ocorrencia) {
-                this.model._id = data.ocorrencia._id;
-                this.model.aluno = new Student(data.ocorrencia.aluno._id, data.ocorrencia.aluno.nome, null, '', '', '', '', '');
-                this.model.data = data.ocorrencia.data;
-                this.model.detalhes = data.ocorrencia.detalhes;
-                this.model.resumo = data.ocorrencia.resumo;
-                this.model.tipoOcorrencia = new OccurrenceType(data.ocorrencia.tipoOcorrencia._id, data.ocorrencia.tipoOcorrencia.descricao);
-                this.model.turma = new Classroom(data.ocorrencia.turma._id, data.ocorrencia.turma.descricao);
-            } 
-        },
-        error => console.log("=> Service Error " + error));      
-    }
-
-  onSubmit(form: NgForm){ 
-      if(form.valid){
-        if(this.editMode){       
-          this.services.updateOccurrence(this.model._id, form.value)
-                      .subscribe((data) => {
-                          this.onCancel(); 
-                      },
-                      error => console.log(error));
-        } else {
-          this.services.insertOccurrence(form.value)
-                      .subscribe((data) => {
-                          this.onCancel(); 
-                      },
-                      error => console.log(error));
+      .subscribe((data) => {
+        if (data.ocorrencia) {
+          this.model._id = data.ocorrencia._id;
+          this.model.aluno = new Student(data.ocorrencia.aluno._id, data.ocorrencia.aluno.nome, null, '', '', '', '', '');
+          this.model.data = data.ocorrencia.data;
+          this.model.detalhes = data.ocorrencia.detalhes;
+          this.model.resumo = data.ocorrencia.resumo;
+          this.model.tipoOcorrencia = new OccurrenceType(data.ocorrencia.tipoOcorrencia._id, data.ocorrencia.tipoOcorrencia.descricao);
+          this.model.turma = new Classroom(data.ocorrencia.turma._id, data.ocorrencia.turma.descricao);
         }
-      }    
+      },
+        error => console.log("=> Service Error " + error));
   }
-  
-  onCancel(){
+
+  onSubmit(form: NgForm) {
+    if (form.valid) {
+      if (this.editMode) {
+        this.services.updateOccurrence(this.model._id, form.value)
+          .subscribe((data) => {
+            this.onCancel();
+          },
+            error => console.log(error));
+      } else {
+        this.services.insertOccurrence(form.value)
+          .subscribe((data) => {
+            this.onCancel();
+          },
+            error => console.log("=> Service Error " + error));
+      }
+    }
+  }
+
+  onCancel() {
     this.router.navigate(['ocorrencias']);
   }
 
   getClassroom(): void {
     this.classroomServices.getClassroom()
-                  .subscribe(
-                      data => this._classroom = data.turmas,
-                      error => console.log("=> Service Error " + error));
-  }  
+      .subscribe(
+        data => this._classroom = data.turmas,
+        error => console.log("=> Service Error " + error));
+  }
 
   getOccurrenceType(): void {
     this.occurrenceTypeServices.getOccurrenceType()
-                  .subscribe(
-                      data => this._occurrenceType = data.tiposOcorrencia,
-                      error => console.log("=> Service Error " + error));
-  } 
-  
+      .subscribe(
+        data => this._occurrenceType = data.tiposOcorrencia,
+        error => console.log("=> Service Error " + error));
+  }
+
   getStudents(): void {
     this.studentServices.getStudents()
-                 .subscribe(
-                     data => this._students = data['alunos'].alunos,
-                      error => console.log("=> Service Error  " + error));
-  } 
+      .subscribe(
+        data => this._students = data['alunos'].alunos,
+        error => console.log("=> Service Error  " + error));
+  }
 
 }

@@ -10,7 +10,7 @@ import { SharedModule } from './shared/shared.module';
 import { StudentsModule } from './students/students.module';
 import { ClassroomModule } from './classroom/classroom.module';
 import { OccurrenceModule } from './occurrence/occurrence.module';
-import { SigninModule } from './auth/auth.module';
+import { AuthModule } from './auth/auth.module';
 
 import { AuthGuardService as AuthGuard } from './services/auth_guard.service';
 import { JwtModule } from '@auth0/angular-jwt';
@@ -42,7 +42,7 @@ export function tokenGetter() {
     StudentsModule,
     ClassroomModule,
     OccurrenceModule,
-    SigninModule
+    AuthModule
   ],
   providers: [
     /*

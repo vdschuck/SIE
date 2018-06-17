@@ -3,13 +3,13 @@ import { CommonModule } from "@angular/common";
 import { FormsModule } from "@angular/forms";
 
 import { AppRoutingModule } from '../app.routing.module';
-import { SigninComponent } from './sign_in.component';
+import { LoginComponent } from './login/login.component';
 
 import { AuthService } from '../services/auth.service';
 
 @NgModule({
     declarations: [
-      SigninComponent                     
+      LoginComponent                     
     ],
     imports: [      
       AppRoutingModule,
@@ -24,4 +24,4 @@ import { AuthService } from '../services/auth.service';
       AuthService
     ]
 })
-export class SigninModule {}
+export class AuthModule {}

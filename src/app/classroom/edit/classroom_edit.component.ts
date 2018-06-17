@@ -12,24 +12,24 @@ import { Classroom } from '../../models/classroom.model';
   providers: [ClassroomServices]
 })
 
-export class ClassroomEditComponent implements OnInit {  
+export class ClassroomEditComponent implements OnInit {
   model = new Classroom('', '');
 
-  constructor(private route: ActivatedRoute, private services: ClassroomServices, private router: Router) {}      
+  constructor(private route: ActivatedRoute, private services: ClassroomServices, private router: Router) { }
 
-  ngOnInit() {}
+  ngOnInit() { }
 
-  onSubmit(form: NgForm){ 
-        if(form.valid){      
-            this.services.insertClassroom(form.value)
-                      .subscribe((data) => {
-                            this.onCancel(); 
-                      },
-                      error => console.log(error));  
-        }    
+  onSubmit(form: NgForm) {
+    if (form.valid) {
+      this.services.insertClassroom(form.value)
+        .subscribe((data) => {
+          this.onCancel();
+        },
+          error => console.log("=> Service Error  " + error));
+    }
   }
-  
-  onCancel(){
+
+  onCancel() {
     this.router.navigate(['turmas']);
   }
 

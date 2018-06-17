@@ -10,39 +10,35 @@ import { Student } from '../models/student.model';
   styleUrls: ['./students.component.css'],
   providers: [StudentsServices]
 })
-export class StudentsComponent implements OnInit {  
-  _students: Student[];  
+export class StudentsComponent implements OnInit {
+  _students: Student[];
 
   constructor(private services: StudentsServices, private router: Router) { }
 
-  ngOnInit() {    
-      this.getStudents();        
+  ngOnInit() {
+    this.getStudents();
   }
 
   getStudents(): void {
-      this.services.getStudents()
-                   .subscribe(
-                        data => this._students = data['alunos'],
-                        error => console.log("=> Service Error  " + error),
-                        () => console.log('=> Finish')
-                     )
+    this.services.getStudents()
+      .subscribe(
+        data => this._students = data['alunos'],
+        error => console.log("=> Service Error  " + error));
+  }
 
-                     console.log('valores' + this._students)
-  }   
-  
-  onEditItem(id: any){
+  onEditItem(id: any) {
     this.router.navigate(['alunos/editar', id]);
   }
 
-  onDeleteItem(id: any){
+  onDeleteItem(id: any) {
     this.services.deleteStudent(id)
-                  .subscribe((data) => {
-                      this.ngOnInit();
-                  },
-                  error => console.log(error));
+      .subscribe((data) => {
+        this.ngOnInit();
+      },
+        error => console.log("=> Service Error  " + error));
   }
 
-  onAdd(){
+  onAdd() {
     this.router.navigate(['alunos/novo']);
   }
 }

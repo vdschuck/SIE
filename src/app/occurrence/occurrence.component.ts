@@ -10,37 +10,35 @@ import { Occurrence } from '../models/occurrence.model';
   styleUrls: ['./occurrence.component.css'],
   providers: [OccurrenceServices]
 })
-export class OccurrenceComponent implements OnInit {  
-    _occurrence: Occurrence[];  
+export class OccurrenceComponent implements OnInit {
+  _occurrence: Occurrence[];
 
   constructor(private services: OccurrenceServices, private router: Router) { }
 
-  ngOnInit() {    
-      this.getOccurrence();    
+  ngOnInit() {
+    this.getOccurrence();
   }
 
   getOccurrence(): void {
-      this.services.getOccurrence()
-                    .subscribe(
-                        data => this._occurrence = data.ocorrencias,
-                        error => console.log("=> Service Error " + error),
-                        () => console.log(this._occurrence)
-                     )
-  }  
+    this.services.getOccurrence()
+      .subscribe(
+        data => this._occurrence = data.ocorrencias,
+        error => console.log("=> Service Error " + error));
+  }
 
-  onEditItem(id: any){
+  onEditItem(id: any) {
     this.router.navigate(['ocorrencias/editar', id]);
   }
 
-  onDeleteItem(id: any){
+  onDeleteItem(id: any) {
     this.services.deleteOccurrence(id)
-                  .subscribe((data) => {
-                      this.ngOnInit();      
-                  },
-                  error => console.log(error));
+      .subscribe((data) => {
+        this.ngOnInit();
+      },
+        error => console.log("=> Service Error " + error));
   }
 
-  onAdd(){
+  onAdd() {
     this.router.navigate(['ocorrencias/nova']);
   }
 }
