@@ -28,16 +28,16 @@ export class AuthService {
     }
 
     static isAuthenticated() {
-        //const jwtHelper = new JwtHelperService();        
-        return !!localStorage.getItem('token');
-        //return token && !jwtHelper.isTokenExpired(token);
+        const jwtHelper = new JwtHelperService();        
+        const token = localStorage.getItem('token');
+        return token && !jwtHelper.isTokenExpired(token);
     }
 
     static setToken(token) {
         localStorage.setItem('token', token);
     }
 
-    static getToken() : string {
+    static getToken() : string {        
         return localStorage.getItem('token');
     }
 

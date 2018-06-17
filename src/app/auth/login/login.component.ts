@@ -30,7 +30,7 @@ export class LoginComponent implements OnInit {
         }
     }
 
-    login(token) {
+    login(token) {                
         AuthService.setToken(token);
         this.router.navigate(['']);
     }
