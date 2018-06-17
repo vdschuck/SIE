@@ -44,14 +44,14 @@ export class OccurrenceEditComponent implements OnInit {
 
     this.services.getOccurrenceById(this.model._id)
       .subscribe((data) => {
-        if (data.ocorrencia) {
-          this.model._id = data.ocorrencia._id;
-          this.model.aluno = new Student(data.ocorrencia.aluno._id, data.ocorrencia.aluno.nome, null, '', '', '', '', '');
-          this.model.data = data.ocorrencia.data;
-          this.model.detalhes = data.ocorrencia.detalhes;
-          this.model.resumo = data.ocorrencia.resumo;
-          this.model.tipoOcorrencia = new OccurrenceType(data.ocorrencia.tipoOcorrencia._id, data.ocorrencia.tipoOcorrencia.descricao);
-          this.model.turma = new Classroom(data.ocorrencia.turma._id, data.ocorrencia.turma.descricao);
+        if (data['ocorrencia']) {
+          this.model._id = data['ocorrencia']._id;
+          this.model.aluno = new Student(data['ocorrencia'].aluno._id, data['ocorrencia'].aluno.nome, null, '', '', '', '', '');
+          this.model.data = data['ocorrencia'].data;
+          this.model.detalhes = data['ocorrencia'].detalhes;
+          this.model.resumo = data['ocorrencia'].resumo;
+          this.model.tipoOcorrencia = new OccurrenceType(data['ocorrencia'].tipoOcorrencia._id, data['ocorrencia'].tipoOcorrencia.descricao);
+          this.model.turma = new Classroom(data['ocorrencia'].turma._id, data['ocorrencia'].turma.descricao);
         }
       },
         error => console.log("=> Service Error " + error));

@@ -22,7 +22,7 @@ export class OccurrenceComponent implements OnInit {
   getOccurrence(): void {
     this.services.getOccurrence()
       .subscribe(
-        data => this._occurrence = data.ocorrencias,
+        data => this._occurrence = data['ocorrencias'],
         error => console.log("=> Service Error " + error));
   }
 
