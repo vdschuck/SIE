@@ -9,7 +9,7 @@ import { ClassroomEditComponent } from './classroom/edit/classroom_edit.componen
 import { OccurrenceComponent } from './occurrence/occurrence.component';
 import { OccurrenceEditComponent } from './occurrence/edit/occurrence_edit.component';
 import { SigninComponent } from './auth/sign_in.component';
-import { AuthGuardService as AuthGuard } from './services/auth-guard.service';
+import { AuthGuardService as AuthGuard } from './services/auth_guard.service';
 
 const appRoutes: Routes = [
     { path: '', component: HomeComponent },

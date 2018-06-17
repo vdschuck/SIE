@@ -36,14 +36,14 @@ export class StudentEditComponent implements OnInit {
 
     this.services.getStudentById(this.model._id)
         .subscribe((data) => {    
-          if (data.aluno) {
-            this.model._id = data.aluno._id;
-            this.model.nome = data.aluno.nome;
-            this.model.nomeMae = data.aluno.nomeMae;
-            this.model.telefoneMae = data.aluno.telefoneMae;
-            this.model.nomePai = data.aluno.nomePai;
-            this.model.telefonePai = data.aluno.telefonePai;
-            this.model.turma = new Classroom(data.aluno.turma._id, data.aluno.turma.descricao);
+          if (data['aluno'].aluno) {
+            this.model._id = data['aluno'].aluno._id;
+            this.model.nome = data['aluno'].aluno.nome;
+            this.model.nomeMae = data['aluno'].aluno.nomeMae;
+            this.model.telefoneMae = data['aluno'].aluno.telefoneMae;
+            this.model.nomePai = data['aluno'].aluno.nomePai;
+            this.model.telefonePai = data['aluno'].aluno.telefonePai;
+            this.model.turma = new Classroom(data['aluno'].aluno.turma._id,data['aluno'].aluno.turma.descricao);
           } 
         },
         error => console.log("=> Service Error " + error));
@@ -62,7 +62,7 @@ export class StudentEditComponent implements OnInit {
                       .subscribe((data) => {
                           this.onCancel(); 
                       },
-                      error => console.log(error))
+                      error => console.log("=> Service Error " + error));
         }
       }    
   }
@@ -75,9 +75,7 @@ export class StudentEditComponent implements OnInit {
     this.classroomServices.getClassroom()
                   .subscribe(
                       data => this._classroom = data.turmas,
-                      error => console.log("=> Service Error " + error),
-                      () => console.log('=> Finish')
-                   )
+                      error => console.log("=> Service Error " + error));
   }  
 
 }

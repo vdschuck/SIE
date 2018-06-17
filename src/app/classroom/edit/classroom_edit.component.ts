@@ -25,7 +25,7 @@ export class ClassroomEditComponent implements OnInit {
                       .subscribe((data) => {
                             this.onCancel(); 
                       },
-                      error => console.log(error))  
+                      error => console.log(error));  
         }    
   }
   

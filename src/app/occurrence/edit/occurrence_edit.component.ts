@@ -54,7 +54,7 @@ export class OccurrenceEditComponent implements OnInit {
                 this.model.turma = new Classroom(data.ocorrencia.turma._id, data.ocorrencia.turma.descricao);
             } 
         },
-        error => console.log("=> Service Error " + error))       
+        error => console.log("=> Service Error " + error));      
     }
 
   onSubmit(form: NgForm){ 
@@ -70,7 +70,7 @@ export class OccurrenceEditComponent implements OnInit {
                       .subscribe((data) => {
                           this.onCancel(); 
                       },
-                      error => console.log(error))
+                      error => console.log(error));
         }
       }    
   }
@@ -83,27 +83,21 @@ export class OccurrenceEditComponent implements OnInit {
     this.classroomServices.getClassroom()
                   .subscribe(
                       data => this._classroom = data.turmas,
-                      error => console.log("=> Service Error " + error),
-                      () => console.log(this._classroom)
-                   )
+                      error => console.log("=> Service Error " + error));
   }  
 
   getOccurrenceType(): void {
     this.occurrenceTypeServices.getOccurrenceType()
                   .subscribe(
                       data => this._occurrenceType = data.tiposOcorrencia,
-                      error => console.log("=> Service Error " + error),
-                      () => console.log(this._occurrenceType)
-                   )
+                      error => console.log("=> Service Error " + error));
   } 
   
   getStudents(): void {
     this.studentServices.getStudents()
                  .subscribe(
-                     data => this._students = data.alunos,
-                      error => console.log("=> Service Error  " + error),
-                      () => console.log('=> Finish')
-                   )
+                     data => this._students = data['alunos'].alunos,
+                      error => console.log("=> Service Error  " + error));
   } 
 
 }

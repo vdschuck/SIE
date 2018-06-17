@@ -10,9 +10,9 @@ import { SharedModule } from './shared/shared.module';
 import { StudentsModule } from './students/students.module';
 import { ClassroomModule } from './classroom/classroom.module';
 import { OccurrenceModule } from './occurrence/occurrence.module';
-import { SigninModule } from './auth/sign_in.module';
+import { SigninModule } from './auth/auth.module';
 
-import { AuthGuardService as AuthGuard } from './services/auth-guard.service';
+import { AuthGuardService as AuthGuard } from './services/auth_guard.service';
 import { JwtModule } from '@auth0/angular-jwt';
 import { AuthService } from './services/auth.service';
 //import { HTTP_INTERCEPTORS } from '@angular/common/http';

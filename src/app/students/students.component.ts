@@ -22,10 +22,12 @@ export class StudentsComponent implements OnInit {
   getStudents(): void {
       this.services.getStudents()
                    .subscribe(
-                       data => this._students = data.alunos,
+                        data => this._students = data['alunos'],
                         error => console.log("=> Service Error  " + error),
                         () => console.log('=> Finish')
                      )
+
+                     console.log('valores' + this._students)
   }   
   
   onEditItem(id: any){
