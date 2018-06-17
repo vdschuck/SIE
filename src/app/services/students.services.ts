@@ -13,19 +13,12 @@ export class StudentsServices{
     private _url = 'https://escolamossman.herokuapp.com/api/aluno/'; 
     private httpOptions: any;
 
-    constructor(private http: HttpClient, private authService : AuthService){             
-        this.httpOptions = {
-            headers: new HttpHeaders({
-                'Content-Type':  'application/json',
-                'Authorization': this.authService.getToken()
-              })
-        }
+    constructor(private http: HttpClient, private authService : AuthService){
     }
 
-    getStudents(){
-        console.log('token' + this.authService.getToken());
+    getStudents(){        
         return this.http
-                    .get(this._url, this.httpOptions)
+                    .get(this._url)
                     .pipe(
                         map((response => response)),
                         retry(2), 

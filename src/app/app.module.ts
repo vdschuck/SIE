@@ -15,12 +15,6 @@ import { AuthModule } from './auth/auth.module';
 import { AuthGuardService as AuthGuard } from './services/auth_guard.service';
 import { JwtModule } from '@auth0/angular-jwt';
 import { AuthService } from './services/auth.service';
-//import { HTTP_INTERCEPTORS } from '@angular/common/http';
-//import { HeaderInterceptor } from './interceptors/request.interceptor';
-
-export function tokenGetter() {
-  return localStorage.getItem('token');
-}
 
 @NgModule({
   declarations: [
@@ -30,7 +24,8 @@ export function tokenGetter() {
     HttpClientModule,
     JwtModule.forRoot({
       config: {
-        tokenGetter: tokenGetter
+        tokenGetter: AuthService.getToken,
+        whitelistedDomains: ['escolamossman.herokuapp.com']
       }
     }),
     BrowserModule,
@@ -45,12 +40,6 @@ export function tokenGetter() {
     AuthModule
   ],
   providers: [
-    /*
-    {
-      provide: HTTP_INTERCEPTORS,
-      useClass: HeaderInterceptor,
-      multi: true
-    },*/
     AuthService,
     AuthGuard
   ],

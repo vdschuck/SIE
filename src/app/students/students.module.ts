@@ -6,6 +6,8 @@ import { AppRoutingModule } from '../app.routing.module';
 import { StudentsComponent } from './students.component';
 import { StudentEditComponent } from './edit/student_edit.component';
 
+import { ClassroomServices } from '../services/classroom.services';
+
 @NgModule({
     declarations: [
         StudentsComponent,
@@ -21,6 +23,9 @@ import { StudentEditComponent } from './edit/student_edit.component';
         CommonModule,
         StudentsComponent, 
         StudentEditComponent       
+    ],
+    providers: [
+        ClassroomServices
     ]   
 })
 export class StudentsModule {}

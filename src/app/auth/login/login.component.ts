@@ -24,14 +24,14 @@ export class LoginComponent implements OnInit {
         if (form.valid) {
             this.authService.singin(this.model)
                 .subscribe((data) => {
-                    this.login(data.json().token);
+                    this.login(data['token']);
                 },
                     error => console.log(error));
         }
     }
 
     login(token) {
-        this.authService.setToken(token);
+        AuthService.setToken(token);
         this.router.navigate(['']);
     }
 }

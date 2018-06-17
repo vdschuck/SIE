@@ -19,7 +19,7 @@
             <div class="form-group">
                 <label for="turma" class="col-sm-2 col-form-label">Turma: </label>
                 <div class="col-sm-8">  
-                    <select class="form-control" [(ngModel)]="model.turma._id" name="turma">
+                    <select class="form-control" [(ngModel)]="model && model.turma._id" name="turma">
                       <option *ngFor="let classroom of _classroom" [ngValue]="classroom._id">
                         {{classroom.descricao}}
                       </option>

@@ -22,7 +22,7 @@ export class ClassroomComponent implements OnInit {
   getClassroom(): void {
     this.services.getClassroom()
       .subscribe(
-        data => this._classroom = data.turmas,
+        data => this._classroom = data['turmas'],
         error => console.log("=> Service Error " + error));
   }
 

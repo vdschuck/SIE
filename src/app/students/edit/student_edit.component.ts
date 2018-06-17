@@ -74,7 +74,7 @@ export class StudentEditComponent implements OnInit {
   getClassroom(): void {
     this.classroomServices.getClassroom()
                   .subscribe(
-                      data => this._classroom = data.turmas,
+                      data => this._classroom = data['turmas'],
                       error => console.log("=> Service Error " + error));
   }  
 
