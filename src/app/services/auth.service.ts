@@ -11,8 +11,7 @@ import { JwtHelperService } from '@auth0/angular-jwt';
 export class AuthService {
     private _url = 'https://escolamossman.herokuapp.com/api/usuario/entrar';    
 
-    constructor(private http: HttpClient) {
-    }
+    constructor(private http: HttpClient) {}
 
     singin(user: User) {
         return this.http
@@ -24,7 +23,7 @@ export class AuthService {
     }
 
     static logout() {
-        localStorage.removeItem('token');
+        this.removeToken();        
     }
 
     static isAuthenticated() {

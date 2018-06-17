@@ -31,7 +31,7 @@ export class LoginComponent implements OnInit {
     }
 
     login(token) {                
-        AuthService.setToken(token);
+        AuthService.setToken(token);        
         this.router.navigate(['']);
     }
 }
