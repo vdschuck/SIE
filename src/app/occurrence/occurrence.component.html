@@ -50,12 +50,12 @@
                 <tr *ngFor="let occurrence of _occurrence">                   
                     <td class="text-center">{{occurrence.aluno.nome}}</td>
                     <td class="text-center">{{occurrence.turma.descricao}}</td>
-                    <td class="text-center">{{occurrence.data}}</td>
+                    <td class="text-center">{{occurrence.data | date: 'dd/MM/yyyy' }}</td>
                     <td class="text-center">{{occurrence.resumo}}</td>
                     <td class="text-center">{{occurrence.tipoOcorrencia.descricao}}</td>
                     <td>
-                        <a class="btn btn-secondary btn-sm text-white" role="button" (click)="onEditItem(occurrence._id)">Editar</a>
-                        <a class="btn btn-danger btn-sm text-white" role="button" (click)="onDeleteItem(occurrence._id)">Excluir</a>
+                        <a class="btn btn-success btn-sm text-white mr-1" role="button" (click)="onEditItem(occurrence._id)">Editar</a>
+                        <a class="btn btn-danger btn-sm text-white ml-1" role="button" (click)="onDeleteItem(occurrence._id)">Excluir</a>
                     </td>
                 </tr>
             </tbody>
