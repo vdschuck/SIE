@@ -89,7 +89,7 @@ export class OccurrenceEditComponent implements OnInit {
   getOccurrenceType(): void {
     this.occurrenceTypeServices.getOccurrenceType()
       .subscribe(
-        data => this._occurrenceType = data.tiposOcorrencia,
+        data => this._occurrenceType = data['tiposOcorrencia'],
         error => console.log("=> Service Error " + error));
   }
 
