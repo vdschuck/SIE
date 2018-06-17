@@ -21,7 +21,9 @@ const appRoutes: Routes = [
     { path: 'turmas/nova', component: ClassroomEditComponent, canActivate: [AuthGuard] },
     { path: 'ocorrencias', component: OccurrenceComponent, canActivate: [AuthGuard] },
     { path: 'ocorrencias/editar/:id', component: OccurrenceEditComponent, canActivate: [AuthGuard]},
-    { path: 'ocorrencias/nova', component: OccurrenceEditComponent, canActivate: [AuthGuard]}
+    { path: 'ocorrencias/nova', component: OccurrenceEditComponent, canActivate: [AuthGuard]},
+    // This route always last
+    { path: '**', component: HomeComponent, canActivate: [AuthGuard] },
 ];
 
 @NgModule({

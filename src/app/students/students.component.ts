@@ -1,8 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { NgForm } from "@angular/forms";
 
 import { StudentsServices } from '../services/students.services';
+import { ClassroomServices } from '../services/classroom.services';
 import { Student } from '../models/student.model';
+import { Classroom } from '../models/classroom.model';
 
 @Component({
   selector: 'app-students',
@@ -12,8 +15,9 @@ import { Student } from '../models/student.model';
 })
 export class StudentsComponent implements OnInit {
   _students: Student[];
+  _classroom: Classroom[];
 
-  constructor(private services: StudentsServices, private router: Router) { }
+  constructor(private services: StudentsServices, private router: Router, private classroomServices: ClassroomServices) { }
 
   ngOnInit() {
     this.getStudents();
@@ -21,6 +25,13 @@ export class StudentsComponent implements OnInit {
 
   getStudents(): void {
     this.services.getStudents()
+      .subscribe(
+        data => this._students = data['alunos'],
+        error => console.log("=> Service Error  " + error));
+  }
+
+  getStudentByFilter(form: NgForm) {
+    this.services.getStudentByFilter(form.value.nome, form.value.turma)
       .subscribe(
         data => this._students = data['alunos'],
         error => console.log("=> Service Error  " + error));
@@ -40,5 +51,12 @@ export class StudentsComponent implements OnInit {
 
   onAdd() {
     this.router.navigate(['alunos/novo']);
+  }
+
+  getClassroom(): void {
+    this.classroomServices.getClassroom()
+      .subscribe(
+        data => this._classroom = data.turmas,
+        error => console.log("=> Service Error " + error));
   }
 }

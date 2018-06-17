@@ -44,6 +44,16 @@ export class StudentsServices{
                     );                         
     }
 
+    getStudentByFilter(nome: string, turma: string){ 
+        return this.http
+                    .get(this._url + '?nome=' + nome + '&turma=' + turma)
+                    .pipe(
+                        map((response => response)),
+                        retry(2),
+                        catchError(error => throwError(error))   
+                    );                         
+    }
+
     updateStudent(id: string, student: Student){        
         let values = JSON.stringify(student);
         
