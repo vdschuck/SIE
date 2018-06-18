@@ -6,29 +6,29 @@ import { HttpClient } from '@angular/common/http';
 import { OccurrenceType } from "../models/occurrence_type.model";
 
 @Injectable()
-export class OccurrenceTypeServices{   
-    private _url = 'https://escolamossman.herokuapp.com/api/tipo-ocorrencia/';     
+export class OccurrenceTypeServices {
+    private _url = 'https://escolamossman.herokuapp.com/api/tipo-ocorrencia/';
 
-    constructor(private http: HttpClient) {}
+    constructor(private http: HttpClient) { }
 
-    getOccurrenceType(){
+    getOccurrenceType() {
         return this.http
-                    .get(this._url)
-                    .pipe(
-                        map((response => response)),
-                        retry(2), 
-                        catchError(error => throwError(error))                    
-                    );                         
+            .get(this._url)
+            .pipe(
+                map((response => response)),
+                retry(2),
+                catchError(error => throwError(error))
+            );
     }
 
-    getOccurrenceTypeById(id: string){ 
+    getOccurrenceTypeById(id: string) {
         return this.http
-                    .get(this._url + id)
-                    .pipe(
-                        map((response => response)),
-                        retry(2),
-                        catchError(error => throwError(error))   
-                    );                         
+            .get(this._url + id)
+            .pipe(
+                map((response => response)),
+                retry(2),
+                catchError(error => throwError(error))
+            );
     }
-   
+
 }

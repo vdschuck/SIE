@@ -28,17 +28,18 @@ export class StudentsComponent implements OnInit {
       .subscribe(
         data => this._students = data['alunos'],
         error => console.log("=> Service Error  " + error));
+  } 
+
+  onEditItem(id: any) {
+    this.router.navigate(['alunos/editar', id]);
   }
 
-  getStudentByFilter(form: NgForm) {
+  onSubmit(form: NgForm) {
+    console.log(form.value);
     this.services.getStudentByFilter(form.value.nome, form.value.turma)
       .subscribe(
         data => this._students = data['alunos'],
         error => console.log("=> Service Error  " + error));
-  }
-
-  onEditItem(id: any) {
-    this.router.navigate(['alunos/editar', id]);
   }
 
   onDeleteItem(id: any) {

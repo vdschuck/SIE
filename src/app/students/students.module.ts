@@ -5,18 +5,17 @@ import { FormsModule } from "@angular/forms";
 import { AppRoutingModule } from '../app.routing.module';
 import { StudentsComponent } from './students.component';
 import { StudentEditComponent } from './edit/student_edit.component';
-
 import { ClassroomServices } from '../services/classroom.services';
 
 @NgModule({
     declarations: [
         StudentsComponent,
-        StudentEditComponent        
+        StudentEditComponent
     ],
     imports: [      
         AppRoutingModule,
         CommonModule,
-        FormsModule    
+        FormsModule            
     ],
     exports: [
         AppRoutingModule,        

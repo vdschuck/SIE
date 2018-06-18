@@ -1,14 +1,16 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from "@angular/common";
 
-import { AppRoutingModule } from "../app.routing.module";
-import { HomeComponent } from "./home/home.component";
-import { HeaderComponent } from "./header/header.component";
+import { AppRoutingModule } from '../app.routing.module';
+import { HomeComponent } from './home/home.component';
+import { HeaderComponent } from './header/header.component';
+import { FilterPipe } from './pipes/filter.pipe';
 
 @NgModule({
     declarations: [
         HeaderComponent,
-        HomeComponent        
+        HomeComponent,
+        FilterPipe         
     ],
     imports: [      
         AppRoutingModule
@@ -16,7 +18,8 @@ import { HeaderComponent } from "./header/header.component";
     exports: [
         AppRoutingModule,
         CommonModule,
-        HeaderComponent 
+        HeaderComponent,
+        FilterPipe 
     ]   
 })
 export class SharedModule {}
