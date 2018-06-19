@@ -31,7 +31,18 @@ export class OccurrenceServices {
             );
     }
 
-    updateOccurrence(id: string, occurrence: Occurrence) {  
+    getOccurrnceByFilter(nome: string, turma: string) {
+        return this.http
+            .get(this._url + '?nome=' + nome + '&turma=' + turma)
+            .pipe(
+                map((response => response)),
+                retry(2),
+                catchError(error => throwError(error))
+            );
+    }
+
+
+    updateOccurrence(id: string, occurrence: Occurrence) {
         return this.http
             .put(this._url + id, occurrence)
             .pipe(
@@ -39,7 +50,8 @@ export class OccurrenceServices {
             );
     }
 
-    insertOccurrence(occurrence: Occurrence) { 
+    insertOccurrence(occurrence: Occurrence) {
+        console.log(occurrence);
         return this.http
             .post(this._url, occurrence)
             .pipe(

@@ -21,6 +21,7 @@ export class StudentsComponent implements OnInit {
 
   ngOnInit() {
     this.getStudents();
+    this.getClassroom();
   }
 
   getStudents(): void {
@@ -28,14 +29,13 @@ export class StudentsComponent implements OnInit {
       .subscribe(
         data => this._students = data['alunos'],
         error => console.log("=> Service Error  " + error));
-  } 
+  }
 
   onEditItem(id: any) {
     this.router.navigate(['alunos/editar', id]);
   }
 
   onSubmit(form: NgForm) {
-    console.log(form.value);
     this.services.getStudentByFilter(form.value.nome, form.value.turma)
       .subscribe(
         data => this._students = data['alunos'],

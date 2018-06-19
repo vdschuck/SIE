@@ -35,7 +35,7 @@ export class StudentsServices {
             );
     }
 
-    getStudentByFilter(nome: string, turma: string) {
+    getStudentByFilter(nome: string, turma: string) {       
         return this.http
             .get(this._url + '?nome=' + nome + '&turma=' + turma)
             .pipe(

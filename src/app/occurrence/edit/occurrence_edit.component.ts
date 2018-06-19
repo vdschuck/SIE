@@ -96,7 +96,7 @@ export class OccurrenceEditComponent implements OnInit {
   getStudents(): void {
     this.studentServices.getStudents()
       .subscribe(
-        data => this._students = data['alunos'].alunos,
+        data => this._students = data['alunos'],
         error => console.log("=> Service Error  " + error));
   }
 
