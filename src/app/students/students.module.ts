@@ -15,7 +15,7 @@ import { ClassroomServices } from '../services/classroom.services';
     imports: [      
         AppRoutingModule,
         CommonModule,
-        FormsModule            
+        FormsModule                 
     ],
     exports: [
         AppRoutingModule,        

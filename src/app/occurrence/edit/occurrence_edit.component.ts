@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Params, Router } from '@angular/router'
-import { FormGroup, FormControl, FormArray, Validators, ReactiveFormsModule, NgForm } from "@angular/forms";
+import { FormGroup, NgForm } from "@angular/forms";
 
 import { OccurrenceTypeServices } from '../../services/occurrence_type.services';
 import { StudentsServices } from '../../services/students.services';
@@ -57,7 +57,7 @@ export class OccurrenceEditComponent implements OnInit {
         error => console.log("=> Service Error " + error));
   }
 
-  onSubmit(form: NgForm) {
+  onSubmit(form: NgForm) {   
     if (form.valid) {
       if (this.editMode) {
         this.services.updateOccurrence(this.model._id, form.value)
@@ -98,6 +98,5 @@ export class OccurrenceEditComponent implements OnInit {
       .subscribe(
         data => this._students = data['alunos'],
         error => console.log("=> Service Error  " + error));
-  }
-
+  }  
 }

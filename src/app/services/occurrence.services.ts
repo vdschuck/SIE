@@ -51,7 +51,6 @@ export class OccurrenceServices {
     }
 
     insertOccurrence(occurrence: Occurrence) {
-        console.log(occurrence);
         return this.http
             .post(this._url, occurrence)
             .pipe(

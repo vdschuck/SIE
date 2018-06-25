@@ -1,6 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, TemplateRef } from '@angular/core';
 import { Router } from '@angular/router';
 import { NgForm } from "@angular/forms";
+import { BsModalService } from 'ngx-bootstrap/modal';
+import { BsModalRef } from 'ngx-bootstrap/modal/bs-modal-ref.service';
 
 import { StudentsServices } from '../services/students.services';
 import { ClassroomServices } from '../services/classroom.services';
@@ -16,8 +18,9 @@ import { Classroom } from '../models/classroom.model';
 export class StudentsComponent implements OnInit {
   _students: Student[];
   _classroom: Classroom[];
+  modalRef: BsModalRef;
 
-  constructor(private services: StudentsServices, private router: Router, private classroomServices: ClassroomServices) { }
+  constructor(private services: StudentsServices, private router: Router, private classroomServices: ClassroomServices, private modalService: BsModalService) { }
 
   ngOnInit() {
     this.getStudents();
@@ -35,7 +38,7 @@ export class StudentsComponent implements OnInit {
     this.router.navigate(['alunos/editar', id]);
   }
 
-  onSubmit(form: NgForm) {
+  onSubmit(form: NgForm) {   
     this.services.getStudentByFilter(form.value.nome, form.value.turma)
       .subscribe(
         data => this._students = data['alunos'],
@@ -48,6 +51,8 @@ export class StudentsComponent implements OnInit {
         this.ngOnInit();
       },
         error => console.log("=> Service Error  " + error));
+        
+    this.modalRef.hide();
   }
 
   onAdd() {
@@ -59,5 +64,13 @@ export class StudentsComponent implements OnInit {
       .subscribe(
         data => this._classroom = data['turmas'],
         error => console.log("=> Service Error " + error));
+  }
+
+  openModal(template: TemplateRef<any>) {
+    this.modalRef = this.modalService.show(template, { class: 'modal-sm' });
+  }
+
+  decline(): void {
+    this.modalRef.hide();
   }
 }

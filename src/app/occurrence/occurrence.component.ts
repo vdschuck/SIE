@@ -1,6 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, TemplateRef } from '@angular/core';
 import { Router } from '@angular/router';
 import { NgForm } from "@angular/forms";
+import { BsModalService } from 'ngx-bootstrap/modal';
+import { BsModalRef } from 'ngx-bootstrap/modal/bs-modal-ref.service';
 
 import { OccurrenceServices } from '../services/occurrence.services';
 import { ClassroomServices } from '../services/classroom.services';
@@ -16,8 +18,9 @@ import { Classroom } from '../models/classroom.model';
 export class OccurrenceComponent implements OnInit {
   _occurrence: Occurrence[];
   _classroom: Classroom[];
+  modalRef: BsModalRef;
 
-  constructor(private services: OccurrenceServices, private router: Router, private classroomServices: ClassroomServices) { }
+  constructor(private services: OccurrenceServices, private router: Router, private classroomServices: ClassroomServices, private modalService: BsModalService) { }
 
   ngOnInit() {
     this.getOccurrence();
@@ -49,17 +52,27 @@ export class OccurrenceComponent implements OnInit {
         this.ngOnInit();
       },
         error => console.log("=> Service Error " + error));
+
+    this.modalRef.hide();
   }
 
   onAdd() {
     this.router.navigate(['ocorrencias/nova']);
   }
-  
+
   getClassroom(): void {
     this.classroomServices.getClassroom()
       .subscribe(
         data => this._classroom = data['turmas'],
         error => console.log("=> Service Error " + error));
+  }
+
+  openModal(template: TemplateRef<any>) {
+    this.modalRef = this.modalService.show(template, { class: 'modal-sm' });
+  }
+
+  decline(): void {
+    this.modalRef.hide();
   }
 
 }

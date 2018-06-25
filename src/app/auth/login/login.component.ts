@@ -11,13 +11,15 @@ import { AuthService } from '../../services/auth.service';
     styleUrls: ['./login.component.css'],
     providers: [AuthService]
 })
-export class LoginComponent implements OnInit {
+export class LoginComponent implements OnInit {   
+     model = new User('', ''); 
+     alertMessage: String = null;
+     alertClosed: Boolean = false;
 
-    model = new User('', '');
     constructor(private router: Router, private authService: AuthService) { }
-
-    ngOnInit() {
-
+    
+    ngOnInit(): void { 
+        this.alertMessage = null;     
     }
 
     onSubmit(form: NgForm) {
@@ -26,7 +28,7 @@ export class LoginComponent implements OnInit {
                 .subscribe((data) => {
                     this.login(data['token']);
                 },
-                    error => console.log(error));
+                response => this.alertMessage = response.error['msg']);
         }
     }
 

@@ -12,7 +12,7 @@
         <div class="row">
           <div class="col-sm-5 form-group">
             <label for="aluno">Aluno: </label>
-            <select class="form-control" [(ngModel)]="model.aluno._id" name="nome" required>
+            <select class="form-control" [(ngModel)]="model.aluno._id" name="aluno" required>
               <option *ngFor="let student of _students" [ngValue]="student._id">
                 {{student.nome}}
               </option>
@@ -20,7 +20,7 @@
           </div>
           <div class="col-sm-5 form-group">
             <label for="name">Data: </label>
-            <input type="text" id="data" class="form-control" name="data" [(ngModel)]="model.data" required>
+            <input type="date" id="data" class="form-control" name="data" [(ngModel)]="model.data" required>
           </div>
           <div class="col-sm-5 form-group">
             <label for="turma">Turma: </label>

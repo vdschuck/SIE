@@ -15,12 +15,17 @@ import { AuthModule } from './auth/auth.module';
 import { AuthGuardService as AuthGuard } from './services/auth_guard.service';
 import { JwtModule } from '@auth0/angular-jwt';
 import { AuthService } from './services/auth.service';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { ModalModule } from 'ngx-bootstrap/modal';
+
 
 @NgModule({
   declarations: [
     AppComponent
   ],
   imports: [
+    NgbModule.forRoot(),
+    ModalModule.forRoot(),    
     HttpClientModule,
     JwtModule.forRoot({
       config: {
@@ -37,7 +42,8 @@ import { AuthService } from './services/auth.service';
     StudentsModule,
     ClassroomModule,
     OccurrenceModule,
-    AuthModule
+    AuthModule,
+    
   ],
   providers: [
     AuthService,

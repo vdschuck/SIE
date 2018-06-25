@@ -10,7 +10,7 @@ import { FilterPipe } from './pipes/filter.pipe';
     declarations: [
         HeaderComponent,
         HomeComponent,
-        FilterPipe         
+        FilterPipe                
     ],
     imports: [      
         AppRoutingModule
@@ -19,7 +19,7 @@ import { FilterPipe } from './pipes/filter.pipe';
         AppRoutingModule,
         CommonModule,
         HeaderComponent,
-        FilterPipe 
+        FilterPipe        
     ]   
 })
 export class SharedModule {}
